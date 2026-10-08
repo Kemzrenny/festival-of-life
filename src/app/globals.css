@@ -474,7 +474,7 @@ fieldset{border:0;margin:0;padding:0}
 .bdrop{transform-box:fill-box;transform-origin:50% 0;animation:flagDrop .7s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(2s + var(--i) * 45ms)}
 @keyframes flagDrop{from{transform:scaleY(0) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
 .bflag{transform-box:fill-box;transform-origin:50% 0;animation:breeze 3.6s ease-in-out infinite;animation-delay:calc(var(--i) * -120ms);transition:filter .2s}
-@keyframes breeze{0%,100%{transform:rotate(-7deg) skewX(4deg)}50%{transform:rotate(7deg) skewX(-4deg)}}
+@keyframes breeze{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 .bdrop:hover .bflag{animation:flick .6s ease-out;filter:brightness(1.15)}
 @keyframes flick{0%{transform:rotate(0)}25%{transform:rotate(-24deg)}55%{transform:rotate(16deg)}80%{transform:rotate(-6deg)}100%{transform:rotate(0)}}
 .bulb{filter:drop-shadow(0 0 4px #ffd27a);animation:bulbIn .4s ease-out both,chase 2.4s ease-in-out infinite;animation-delay:calc(2.1s + var(--i) * 45ms),calc(3.6s + var(--i) * 80ms)}
