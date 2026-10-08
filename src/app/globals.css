@@ -121,7 +121,7 @@ p{margin:0}
 @keyframes unroll{from{transform:scaleY(.04)}to{transform:none}}
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr}
-  .runners{order:-1;height:clamp(190px,56vw,300px);padding-top:14px}
+  .runners{height:clamp(220px,62vw,340px);padding-top:14px;margin-top:8px}
   .logo-hero{width:min(300px,68%)}
 }
 
