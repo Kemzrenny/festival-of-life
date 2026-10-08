@@ -29,7 +29,7 @@ export const event = {
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=28+Efon+Alaye+Street+Ojodu+Lagos",
   hosts: "Glory Realms Ministries & Glory Centre Community Church",
-  siteUrl: "https://festivaloflife.org", // update when the domain is confirmed
+  siteUrl: "https://festival-of-life-sigma.vercel.app", // switch to the custom domain when it is set up
 };
 
 export const song = {
