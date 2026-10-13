@@ -265,7 +265,7 @@ p{margin:0}
 
 /* what to expect film */
 .expect{background:var(--black);padding-block:clamp(64px,8vw,112px)}
-.film{position:relative;aspect-ratio:16/9;border-radius:calc(var(--r) + 4px);overflow:hidden;background:var(--black-2);isolation:isolate}
+.film{position:relative;aspect-ratio:4/3;max-width:900px;margin-inline:auto;border-radius:calc(var(--r) + 4px);overflow:hidden;background:var(--black-2);isolation:isolate}
 .scene{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;z-index:0}
 .scene.on{opacity:1;z-index:1}
 .scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%;will-change:transform}
@@ -274,9 +274,9 @@ p{margin:0}
 .film.playing .scene.on[data-k="pan"]>img{animation:panAcross var(--dur) ease-in-out both}
 .film.playing .scene.on[data-k="deep"]>img{animation:walkDeep var(--dur) linear both}
 .film.paused .scene>img{animation-play-state:paused!important}
-@keyframes walkIn{from{transform:scale(1.02) translateY(0)}to{transform:scale(1.32) translateY(-4%)}}
-@keyframes panAcross{from{transform:scale(1.25) translateX(6%)}to{transform:scale(1.25) translateX(-6%)}}
-@keyframes walkDeep{from{transform:scale(1.05)}to{transform:scale(1.6) translateY(4%)}}
+@keyframes walkIn{from{transform:scale(1.02) translateY(0)}to{transform:scale(1.16) translateY(-3%)}}
+@keyframes panAcross{from{transform:scale(1.12) translateX(4%)}to{transform:scale(1.12) translateX(-4%)}}
+@keyframes walkDeep{from{transform:scale(1.02)}to{transform:scale(1.22) translateY(3%)}}
 .cap{position:absolute;left:clamp(18px,3vw,44px);right:clamp(18px,3vw,44px);bottom:calc(clamp(16px,2vw,24px) + 64px);z-index:2;max-width:620px;display:flex;flex-direction:column;gap:8px}
 .cap .n{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow)}
 .cap h3{font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1}
