@@ -417,7 +417,7 @@ fieldset{border:0;margin:0;padding:0}
 
 /* palm loader (P2) */
 .loader{position:fixed;inset:0;z-index:100;background:var(--red);display:grid;place-items:center;animation:loaderOut .6s ease 1.5s forwards;pointer-events:none}
-.loader svg{width:min(120px,26vw);color:var(--cream);animation:palmIn 1.2s cubic-bezier(.2,1.3,.4,1) both}
+.loader img{width:min(220px,52vw);height:auto;animation:palmIn 1.2s cubic-bezier(.2,1.3,.4,1) both}
 .loader p{position:absolute;bottom:18%;left:0;right:0;text-align:center;font-family:var(--head);font-weight:700;font-size:clamp(18px,2vw,24px);color:var(--red-t);letter-spacing:-.01em;animation:fadeUp .8s ease .4s both}
 @keyframes palmIn{from{transform:translateY(30px) rotate(-12deg) scale(.6);opacity:0}to{transform:none;opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}

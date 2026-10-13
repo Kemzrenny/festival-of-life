@@ -41,7 +41,7 @@ export default function Home() {
   const socialLinks = social.filter((s) => s.url);
   return (
     <>
-      <div className="loader" aria-hidden="true"><Palm /><p>{event.tagline}</p></div>
+      <div className="loader" aria-hidden="true"><img src="/assets/logo.png" alt="" width={800} height={674} /><p>{event.tagline}</p></div>
       <Header />
 
       <main id="top">
