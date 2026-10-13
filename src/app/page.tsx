@@ -228,11 +228,25 @@ export default function Home() {
             </div>
             <div className="sec-head">
               <h2 id="looksH">Spread your<br />clothes on the road</h2>
-              <p className="note">When Jesus rode in, the crowd dressed the road for Him. This December we dress up for Him.</p>
+              <p className="note">When Jesus rode in, the crowd dressed the road for Him. This December we dress up for Him. Take these looks as inspiration for your own festival outfit.</p>
             </div>
           </div>
           <Belt />
-          <p className="belt-hint">Drag the belt. Pick your look.</p>
+          <p className="belt-hint">Drag the belt for outfit ideas.</p>
+          <div className="wrap">
+            <div className="fabric-drop">
+              <div className="swatches" aria-hidden="true">
+                {["flat-teal", "flat-mustard", "flat-crimson", "flat-coral", "flat-lime"].map((f) => (
+                  <span key={f} style={{ backgroundImage: `url(/assets/${f}.webp)` }} />
+                ))}
+              </div>
+              <div className="fd-text">
+                <span className="soon">Coming soon</span>
+                <h3>The Festival of Life fabric</h3>
+                <p>Ankara-style prints in the festival colours, woven with the symbols of our culture. Buy it by the yard and take it to your tailor to make your own festival look.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* WHAT TO EXPECT */}

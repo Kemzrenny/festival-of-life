@@ -37,7 +37,7 @@ export function Belt() {
         return (
           <figure className="look" key={i} style={{ margin: 0, ["--strip" as string]: bg, ["--stript" as string]: t }}>
             <div className="bd"><img src={`/assets/look-${i + 1}.webp`} alt={`Festival look: ${l.name}`} loading="lazy" draggable={false} /></div>
-            <figcaption className="tag"><small>Look {String(i + 1).padStart(2, "0")}</small>{l.name}</figcaption>
+            <figcaption className="tag"><small>Inspiration {String(i + 1).padStart(2, "0")}</small>{l.name}</figcaption>
             <div className="strip"><span>Festival of Life · Hosanna · Festival of Life · Hosanna · Festival of Life · Hosanna · </span></div>
           </figure>
         );

@@ -485,3 +485,16 @@ fieldset{border:0;margin:0;padding:0}
 .yt-host{position:fixed;width:1px;height:1px;left:-9999px;top:0;opacity:0;pointer-events:none}
 .save-link{font-weight:700;text-decoration:underline}
 @media (prefers-reduced-motion: reduce){.bulb,.bflag,.bdrop,.bstring{animation:none}.bstring{stroke-dashoffset:0}}
+
+/* festival fabric, coming soon */
+.fabric-drop{margin-top:clamp(36px,5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px);align-items:center;background:var(--black);color:var(--cream);border-radius:calc(var(--r) + 6px);padding:clamp(18px,3vw,36px);overflow:hidden}
+.swatches{display:flex;gap:8px;height:clamp(180px,22vw,260px)}
+.swatches span{flex:1;border-radius:10px;background-size:cover;background-position:center top;box-shadow:0 10px 24px rgba(0,0,0,.4);transform-origin:top;animation:sway 7s ease-in-out infinite alternate}
+.swatches span:nth-child(even){animation-direction:alternate-reverse;animation-duration:8s}
+.fd-text{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
+.fd-text h3{font-size:clamp(28px,3.4vw,46px);letter-spacing:-.03em}
+.fd-text p{color:var(--muted-cream);max-width:46ch}
+.soon{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--yellow-t);font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.soon::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--yellow-t);animation:pulse 1.8s infinite}
+@media (max-width:760px){.fabric-drop{grid-template-columns:1fr}.swatches{height:160px}}
+@media (prefers-reduced-motion: reduce){.swatches span,.soon::before{animation:none}}
