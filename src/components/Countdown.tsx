@@ -16,11 +16,18 @@ export function Countdown() {
   useEffect(() => { setNow(Date.now()); const t = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(t); }, []);
   const v = now === null ? [0, 0, 0, 0] : parts(target - now);
   const labels = ["Days", "Hours", "Minutes", "Seconds"];
+  const daysLeft = v[0];
+  const line = now === null || daysLeft >= 7
+    ? "Plenty of time to get the agbada pressed. Not enough to keep postponing it."
+    : daysLeft >= 1 ? "Final days. Get that agbada pressed." : "It's time. See you in the auditorium.";
   return (
+    <>
     <div className="clock" role="timer" aria-label="Time until the first session">
       {v.map((n, i) => (
         <div className="unit" key={i}><b suppressHydrationWarning>{String(n).padStart(2, "0")}</b><small>{labels[i]}</small></div>
       ))}
     </div>
+    <p className="ready" suppressHydrationWarning>{line}</p>
+    </>
   );
 }

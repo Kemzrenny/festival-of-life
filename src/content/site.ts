@@ -41,14 +41,12 @@ export const song = {
 
 /** Livestream and social links. Leave a url empty ("") to hide that button. */
 export const live = [
-  { label: "Live", sub: "Website stream", url: "", pair: "coral" as Pair },
-  { label: "YouTube", sub: "Video stream", url: "", pair: "yellow" as Pair },
-  { label: "Mixlr", sub: "Audio stream", url: "", pair: "lime" as Pair },
+  { label: "YouTube", sub: "Glory Centre Community Church", url: "https://www.youtube.com/@glorycentrecommunitychurch", pair: "yellow" as Pair },
 ];
 
 export const social = [
   { label: "Instagram", url: "" },
-  { label: "YouTube", url: "" },
+  { label: "YouTube", url: "https://www.youtube.com/@glorycentrecommunitychurch" },
   { label: "Contact", url: "" },
 ];
 
@@ -69,8 +67,8 @@ export const days = [
 
 /** Session titles per day, in day order. Replace once the programme is confirmed. */
 export const sessions = days.map(() => ({
-  morning: "Morning celebration",
-  evening: "Evening celebration",
+  morning: "Morning session",
+  evening: "Evening session",
 }));
 
 export const voices = [
@@ -84,7 +82,7 @@ export const voices = [
     word: "Alive", pair: "lime" as Pair, glyph: "tree", strip: "/assets/strip-tree.webp",
     quote: "“Was dead, now alive, need more headroom for my Fila.”",
     body: "Life in Him isn’t quiet and it isn’t small. Come as someone who has been raised up, and dress like it.",
-    verse: "“Even when we were dead in trespasses, made us alive together with Christ.”", ref: "Ephesians 2:5",
+    verse: "“Even when we were dead in trespasses, [God] made us alive together with Christ.”", ref: "Ephesians 2:5",
   },
   {
     word: "Rejoicing", pair: "coral" as Pair, glyph: "fire", strip: "/assets/strip-fire.webp",
@@ -112,7 +110,7 @@ export const symbols = [
   { name: "Dove", glyph: "dove", line: "Peace, and the Spirit descending." },
   { name: "Cross", glyph: "cross", line: "Where extravagant grace was poured out." },
   { name: "Staff", glyph: "staff", line: "The Good Shepherd who leads us." },
-  { name: "Crown of Thorns", glyph: "thorns", line: "The price He paid to wear it." },
+  { name: "Crown of Thorns", glyph: "thorns", line: "The suffering He bore for us." },
   { name: "Crown", glyph: "crown", line: "The King we celebrate." },
   { name: "Bible", glyph: "bible", line: "The Word that gives life." },
   { name: "Praying Hands", glyph: "hands", line: "A people who seek His face." },
@@ -133,9 +131,9 @@ export const looks: { name: string; pair: Pair }[] = [
 
 export const expect = [
   {
-    kind: "in", image: "/assets/env-bunting.webp", alt: "A street under festival bunting and string lights",
-    label: "At the gate", title: "Arrive early. Walk in under the bunting.",
-    text: "The welcome street opens 30 minutes before each session, with music, greeters and your first photos of the day.",
+    kind: "deep", image: "/assets/env-corridor.webp", alt: "A lit approach lined with festival symbol panels",
+    label: "Arrive early", title: "Find your seat in the church auditorium.",
+    text: "Sessions start at 9AM and 5PM. Come a little early to settle in before worship begins.",
     ms: 7000,
   },
   {
@@ -145,20 +143,20 @@ export const expect = [
     ms: 6500,
   },
   {
-    kind: "deep", image: "/assets/env-corridor.webp", alt: "A corridor of illuminated symbol panels",
-    label: "The symbol corridor", title: "Follow the symbols into the main hall.",
-    text: "Ten panels, one story: from the cup and bread to the tamarisk tree. Find a seat and get ready to celebrate.",
+    kind: "in", image: "/assets/env-bunting.webp", alt: "Festival bunting and string lights",
+    label: "Come dressed for it", title: "Wear your most extravagant outfit.",
+    text: "Agbada, gele, aso-oke, the jacket you've been saving. Walk in ready to celebrate the life of Jesus.",
     ms: 7000,
   },
 ];
 
 export const faq = [
   { q: "What should I wear?", a: "Your most extravagant celebration outfit. Agbada, gele, aso-oke, the jacket you've been saving: all welcome. Leave headroom for the Fila." },
-  { q: "Is it free to attend?", a: "Entry details to be confirmed. Registering helps us prepare a seat and a welcome for you." },
+  { q: "Is it free to attend?", a: "Yes, entry is free. Registering helps us prepare a seat and a welcome for you." },
   { q: "Can I come for only some days?", a: "Yes. When you register, pick the days and sessions you're coming for. We'll be glad to see you at any of them." },
   { q: "Where can I park?", a: "Parking and overflow arrangements will be shared closer to the date." },
   { q: "How do I get there by public transport?", a: "Directions from Ojodu Berger and the nearest bus stops will be shared closer to the date." },
-  { q: "Is there a session on Christmas Day?", a: "Yes. Sessions run every day from 23 to 27 December. What better day to celebrate the life of Jesus?" },
+  { q: "Is there a session on Christmas Day?", a: "Yes. There's a morning and an evening session on Christmas Day, just like every other day. What better day to celebrate the life of Jesus?" },
   { q: "Can I bring the children?", a: "Children's church arrangements will be shared closer to the date." },
 ];
 

@@ -130,7 +130,7 @@ export function Register() {
         <div className="card-step">
           <canvas ref={cv} width={1080} height={1350} aria-label="Your I'm Attending card preview" />
           <div className="card-ctrl">
-            <h3>You&apos;re in, {first}. Agbada on standby.</h3>
+            <h3>You&apos;re in, {first}. Outfit on standby.</h3>
             <p>Add a photo to your I&apos;m Attending card, then save it and share it everywhere.</p>
             <label className="upload" htmlFor="photoIn">Add your photo<input type="file" id="photoIn" accept="image/*" onChange={onPhoto} /></label>
             <div className="field"><label htmlFor="cardName">Name on your card</label><input type="text" id="cardName" maxLength={28} value={cardName} onChange={(e) => setCardName(e.target.value)} /></div>

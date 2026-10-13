@@ -240,7 +240,7 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <h2 id="expectH">What to<br />expect</h2>
-              <p className="note">A 25-second walk from the gate to the main hall. Press play, or tap a scene.</p>
+              <p className="note">A short walk through your festival day. Press play, or tap a scene.</p>
             </div>
             <ExpectFilm />
           </div>
@@ -280,11 +280,11 @@ export default function Home() {
               <h2 id="liveH">Celebrate from<br />wherever you are</h2>
               <p className="note">
                 {liveLinks.length
-                  ? "Every session streams live. Can't make it to Ojodu? Join the celebration from your sitting room."
+                  ? "Every session streams live on the Glory Centre Community Church YouTube channel. Can't make it to Ojodu? Join the celebration from your sitting room."
                   : "Every session will stream live. Links will be posted here before 23 December."}
               </p>
             </div>
-            <div className="lgrid">
+            <div className="lgrid" style={live.length === 1 ? { gridTemplateColumns: "1fr" } : undefined}>
               {live.map((l) => {
                 const [c, t] = PAIRS[l.pair];
                 const inner = (<><b>{l.label}</b><span>{l.url ? l.sub : "Link coming soon"} <span aria-hidden="true">{l.url ? "↗" : ""}</span></span></>);
@@ -301,7 +301,6 @@ export default function Home() {
           <div className="wrap">
             <h2 id="countH">The celebration of the <span>life of Jesus</span> begins in</h2>
             <Countdown />
-            <p className="ready">Plenty of time to get the agbada pressed. Not enough to keep postponing it.</p>
           </div>
         </section>
 
