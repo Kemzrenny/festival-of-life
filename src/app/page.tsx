@@ -131,7 +131,7 @@ export default function Home() {
             <div className="mgrid">
               {ministers.map((m) => (
                 <article className="mcard" key={m.name}>
-                  <div className="pic"><img src={m.photo} alt={`Pastor ${m.name}`} loading="lazy" />{m.host && <span className="host">Host</span>}</div>
+                  <div className="pic" style={{ background: PAIRS[m.pair][0] }}><img src={m.photo} alt={`Pastor ${m.name}`} loading="lazy" />{m.host && <span className="host">Host</span>}</div>
                   <div className="zig" style={{ backgroundImage: zigTile(m.pair) }} />
                   <div className="mname"><small>Pastor</small><b>{m.name}</b></div>
                 </article>
