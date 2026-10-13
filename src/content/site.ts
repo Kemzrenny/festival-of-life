@@ -32,6 +32,14 @@ export const event = {
   siteUrl: "https://festival-of-life-sigma.vercel.app", // switch to the custom domain when it is set up
 };
 
+/**
+ * Registration happens on an external form. Paste its link here and every "Register" button
+ * on the site opens it in a new tab. While it is empty, those buttons scroll to the I'm Attending section.
+ */
+export const registration = {
+  url: "",
+};
+
 export const song = {
   title: "Hosanna",
   artist: "Toyosi Oseni",
@@ -153,7 +161,7 @@ export const expect = [
 export const faq = [
   { q: "What should I wear?", a: "Your most extravagant celebration outfit. Agbada, gele, aso-oke, the jacket you've been saving: all welcome. Leave headroom for the Fila." },
   { q: "Is it free to attend?", a: "Yes, entry is free. Registering helps us prepare a seat and a welcome for you." },
-  { q: "Can I come for only some days?", a: "Yes. When you register, pick the days and sessions you're coming for. We'll be glad to see you at any of them." },
+  { q: "Can I come for only some days?", a: "Yes. Come for the days and sessions that work for you. We'll be glad to see you at any of them." },
   { q: "Where can I park?", a: "Parking and overflow arrangements will be shared closer to the date." },
   { q: "How do I get there by public transport?", a: "Directions from Ojodu Berger and the nearest bus stops will be shared closer to the date." },
   { q: "Is there a session on Christmas Day?", a: "Yes. There's a morning and an evening session on Christmas Day, just like every other day. What better day to celebrate the life of Jesus?" },

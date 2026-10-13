@@ -498,3 +498,4 @@ fieldset{border:0;margin:0;padding:0}
 .soon::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--yellow-t);animation:pulse 1.8s infinite}
 @media (max-width:760px){.fabric-drop{grid-template-columns:1fr}.swatches{height:160px}}
 @media (prefers-reduced-motion: reduce){.swatches span,.soon::before{animation:none}}
+.reg-nudge{font-size:14px;color:var(--muted,#6b5e52);margin:0}

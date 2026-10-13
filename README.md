@@ -43,16 +43,12 @@ Images live in `public/assets/`. To replace one, keep the same file name, or upd
 
 ## Registration
 
-The form and the I'm Attending card work now. Storage is still to be decided, so registrations are
-**not saved yet**. To start saving them, set one environment variable in Vercel
-(**Settings → Environment Variables**):
+Registration happens on an external form. Paste its link into `registration.url` in
+`src/content/site.ts` and every "Register" button opens it in a new tab. While it is empty the
+buttons scroll to the I'm Attending section.
 
-```
-NEXT_PUBLIC_REGISTRATION_ENDPOINT=https://your-endpoint
-```
-
-Any URL that accepts a JSON `POST` works (Google Apps Script web app, Supabase edge function,
-Formspree, etc.). The payload shape is the `Registration` type in `src/lib/registration.ts`.
+The I'm Attending card maker is separate and needs no registration: anyone can add a photo and
+name and download the card (`src/components/CardMaker.tsx`).
 
 ## Fonts
 
@@ -70,5 +66,5 @@ as GT Walsheim / Söhne, and the CSS font stacks pick them up first.
 - [ ] Replace session titles if the programme names them
 - [ ] High-resolution minister photos
 - [ ] Final logo SVG and photo-shoot images from the creative team
-- [ ] Set `NEXT_PUBLIC_REGISTRATION_ENDPOINT` once storage is chosen
+- [ ] Paste the registration form link into `registration.url` in `src/content/site.ts`
 - [ ] Set the real domain in `event.siteUrl`

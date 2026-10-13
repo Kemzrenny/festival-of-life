@@ -6,8 +6,8 @@ import { Edges } from "@/components/Edge";
 import { ExpectFilm } from "@/components/ExpectFilm";
 import { Glyph, PALM_PATH } from "@/components/Glyph";
 import { Header } from "@/components/Header";
-import { Register } from "@/components/Register";
-import { RegisterButton } from "@/components/RegisterButton";
+import { CardMaker } from "@/components/CardMaker";
+import { CardButton, RegisterButton } from "@/components/RegisterButton";
 import { Ribbon } from "@/components/Ribbon";
 import { SoundPlayer } from "@/components/SoundPlayer";
 import { Symbols } from "@/components/Symbols";
@@ -54,7 +54,7 @@ export default function Home() {
               <p className="tagline">A celebration of the <em>life of Jesus.</em></p>
               <p className="when-line"><b>{event.dates}</b><span aria-hidden="true">·</span>{event.city}</p>
               <div className="hero-ctas">
-                <RegisterButton>I&apos;m attending</RegisterButton>
+                <RegisterButton>Register</RegisterButton>
                 <a className="btn btn-line" href="#live"><i className="live-dot" aria-hidden="true" />Watch live</a>
               </div>
             </div>
@@ -319,14 +319,14 @@ export default function Home() {
         </section>
 
         {/* I'M ATTENDING */}
-        <section className="attend-wrap" aria-labelledby="attH">
+        <section className="attend-wrap" id="attending" aria-labelledby="attH">
           <div className="wrap">
             <div className="attend">
               <div className="txt">
                 <p className="eyebrow mark" style={{ color: "var(--red-t)" }}>Tell everyone</p>
                 <h2 id="attH">I&apos;m attending <span>Festival of Life.</span></h2>
-                <p>Register in a minute, then make your own I&apos;m Attending card with your photo and name. Post it, send it, set it as your status.</p>
-                <div className="btns"><RegisterButton>Register and make my card</RegisterButton></div>
+                <p>Make your own I&apos;m Attending card with your photo and name. Post it, send it, set it as your status. Haven&apos;t registered yet? Do that too, it takes a minute.</p>
+                <div className="btns"><CardButton>Make my card</CardButton><RegisterButton className="btn btn-dark">Register</RegisterButton></div>
               </div>
               <div className="preview" aria-hidden="true"><div className="bx">I&apos;m Attending</div><div className="ph-win">Your photo</div><div className="bx">Your name</div></div>
             </div>
@@ -353,11 +353,11 @@ export default function Home() {
       </footer>
 
       <div className="mbar">
-        <RegisterButton>I&apos;m attending</RegisterButton>
+        <RegisterButton>Register</RegisterButton>
         <a className="btn btn-line" href="#live" aria-label="Watch live"><i className="live-dot" aria-hidden="true" />Live</a>
       </div>
       <SoundPlayer />
-      <Register />
+      <CardMaker />
     </>
   );
 }

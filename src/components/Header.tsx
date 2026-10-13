@@ -20,7 +20,7 @@ export function Header() {
             {LINKS.map(([h, l]) => <a key={h} href={h}>{l}</a>)}
           </nav>
           <div className="hdr-cta">
-            <RegisterButton>I&apos;m attending</RegisterButton>
+            <RegisterButton>Register</RegisterButton>
             <button className="menu-btn" type="button" aria-expanded={open} aria-controls="mnav" onClick={() => setOpen(!open)}>
               {open ? "Close" : "Menu"}
             </button>

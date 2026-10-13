@@ -70,7 +70,7 @@ export function ExpectFilm() {
           <img src="/assets/logo.png" alt="Festival of Life" />
           <h3>Then the celebration begins.</h3>
           <p>Mornings 9AM · Evenings 5PM · {event.dates}</p>
-          <RegisterButton>I&apos;m attending</RegisterButton>
+          <RegisterButton>Register</RegisterButton>
         </div>
       </div>
       <div className="film-ui">
