@@ -18,8 +18,8 @@ export function Countdown() {
   const labels = ["Days", "Hours", "Minutes", "Seconds"];
   const daysLeft = v[0];
   const line = now === null || daysLeft >= 7
-    ? "Plenty of time to get the agbada pressed. Not enough to keep postponing it."
-    : daysLeft >= 1 ? "Final days. Get that agbada pressed." : "It's time. See you in the auditorium.";
+    ? "Start planning your festival outfit. The countdown is on."
+    : daysLeft >= 1 ? "Final days. Get your outfit ready." : "It's time. See you in the auditorium.";
   return (
     <>
     <div className="clock" role="timer" aria-label="Time until the first session">

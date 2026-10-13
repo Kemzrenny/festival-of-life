@@ -50,6 +50,7 @@ export const song = {
 /** Livestream and social links. Leave a url empty ("") to hide that button. */
 export const live = [
   { label: "YouTube", sub: "Glory Centre Community Church", url: "https://www.youtube.com/@glorycentrecommunitychurch", pair: "yellow" as Pair },
+  { label: "Mixlr", sub: "Audio stream", url: "", pair: "lime" as Pair }, // paste the Mixlr link when ready
 ];
 
 export const social = [

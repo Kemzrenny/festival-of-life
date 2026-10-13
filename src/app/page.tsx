@@ -231,10 +231,8 @@ export default function Home() {
               <p className="note">When Jesus rode in, the crowd dressed the road for Him. This December we dress up for Him. Take these looks as inspiration for your own festival outfit.</p>
             </div>
           </div>
-          <Belt />
-          <p className="belt-hint">Drag the belt for outfit ideas.</p>
           <div className="wrap">
-            <div className="fabric-drop">
+            <div className="fabric-drop fabric-first">
               <div className="swatches" aria-hidden="true">
                 {["flat-teal", "flat-mustard", "flat-crimson", "flat-coral", "flat-lime"].map((f) => (
                   <span key={f} style={{ backgroundImage: `url(/assets/${f}.webp)` }} />
@@ -247,6 +245,8 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <Belt />
+          <p className="belt-hint">Drag the belt for outfit ideas.</p>
         </section>
 
         {/* WHAT TO EXPECT */}
@@ -294,11 +294,11 @@ export default function Home() {
               <h2 id="liveH">Celebrate from<br />wherever you are</h2>
               <p className="note">
                 {liveLinks.length
-                  ? "Every session streams live on the Glory Centre Community Church YouTube channel. Can't make it to Ojodu? Join the celebration from your sitting room."
+                  ? "Every session streams live on the Glory Centre Community Church YouTube channel, with audio on Mixlr. Can't make it to Ojodu? Join the celebration from your sitting room."
                   : "Every session will stream live. Links will be posted here before 23 December."}
               </p>
             </div>
-            <div className="lgrid" style={live.length === 1 ? { gridTemplateColumns: "1fr" } : undefined}>
+            <div className="lgrid" style={live.length < 3 ? { gridTemplateColumns: `repeat(${live.length}, minmax(0,1fr))` } : undefined}>
               {live.map((l) => {
                 const [c, t] = PAIRS[l.pair];
                 const inner = (<><b>{l.label}</b><span>{l.url ? l.sub : "Link coming soon"} <span aria-hidden="true">{l.url ? "↗" : ""}</span></span></>);

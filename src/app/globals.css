@@ -499,3 +499,5 @@ fieldset{border:0;margin:0;padding:0}
 @media (max-width:760px){.fabric-drop{grid-template-columns:1fr}.swatches{height:160px}}
 @media (prefers-reduced-motion: reduce){.swatches span,.soon::before{animation:none}}
 .reg-nudge{font-size:14px;color:var(--muted,#6b5e52);margin:0}
+.fabric-drop.fabric-first{margin-top:0;margin-bottom:clamp(28px,4vw,48px)}
+@media (max-width:700px){.lgrid[style]{grid-template-columns:1fr !important}}
