@@ -501,3 +501,12 @@ fieldset{border:0;margin:0;padding:0}
 .reg-nudge{font-size:14px;color:var(--muted,#6b5e52);margin:0}
 .fabric-drop.fabric-first{margin-top:0;margin-bottom:clamp(28px,4vw,48px)}
 @media (max-width:700px){.lgrid[style]{grid-template-columns:1fr !important}}
+/* Desktop: size the hero by viewport height so the logo, tagline, date and buttons always fit above the fold */
+@media (min-width:901px){
+  .bunting{height:min(clamp(54px,7vw,92px),9svh)}
+  .hero-grid{padding-top:clamp(8px,1.6svh,36px)}
+  .hero-copy{gap:clamp(12px,2.4svh,34px);padding-top:clamp(0px,1svh,20px)}
+  .logo-hero{width:min(400px,74%,34svh)}
+  .tagline{font-size:min(clamp(34px,4.6vw,64px),7svh)}
+  .runners{height:min(clamp(420px,60vw,700px),calc(100svh - 150px))}
+}
