@@ -336,8 +336,8 @@ p{margin:0}
 
 /* countdown */
 .count{position:relative;isolation:isolate;padding-block:clamp(72px,9vw,140px);text-align:center;overflow:hidden}
-.count::before{content:"";position:absolute;inset:0;background:url(/assets/env-bunting.webp) center 30%/cover;z-index:-2}
-.count::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(11,10,9,.55),rgba(11,10,9,.88));z-index:-1}
+.count::before{content:"";position:absolute;inset:0;background:url(/assets/fabric-red-curtain.webp) center/cover;z-index:-2}
+.count::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(11,10,9,.3),rgba(11,10,9,.72));z-index:-1}
 .count h2{font-size:clamp(30px,4.6vw,68px);margin:0 auto clamp(24px,3vw,40px);max-width:20ch}
 .count h2 span{color:var(--yellow)}
 .clock{display:flex;justify-content:center;gap:clamp(8px,1.6vw,20px);flex-wrap:wrap}
