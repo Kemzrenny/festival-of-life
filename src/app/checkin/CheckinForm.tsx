@@ -85,72 +85,85 @@ export function CheckinForm() {
 
   const again = () => { setDone(null); setName(""); setErr(""); };
   const sessions: { id: Session; label: string; time: string }[] = [
-    { id: "morning", label: "Morning", time: `${event.morning}` },
-    { id: "evening", label: "Evening", time: `${event.evening}` },
+    { id: "morning", label: "Morning", time: "9:00 AM WAT" },
+    { id: "evening", label: "Evening", time: "5:00 PM WAT" },
   ];
+
+  const ICONS = {
+    morning: <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>,
+    evening: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8 8 0 0 1 9.4 4a8 8 0 1 0 10.6 10.6z" /></svg>,
+    onsite: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a7 7 0 0 0-7 7c0 5.1 7 11.4 7 11.4s7-6.3 7-11.4a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" /></svg>,
+    online: <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="13" rx="2.5" /><path d="M10 8.3v5.4l4.6-2.7z" fill="#fff" /><path d="M8 20.5h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>,
+  };
+  const toggle = <T extends string>({ name, value, onChange, items }: { name: string; value: T | null; onChange: (v: T) => void; items: { id: T; label: string; sub: string }[] }) => (
+    <div className="ci-seg" role="radiogroup">
+      {items.map((it) => (
+        <label key={it.id} className={`ci-opt${value === it.id ? " on" : ""}`}>
+          <input type="radio" name={name} value={it.id} checked={value === it.id} onChange={() => onChange(it.id)} />
+          <span className="ci-ico">{ICONS[it.id as keyof typeof ICONS]}</span>
+          <span className="ci-txt"><b>{it.label}</b><small>{it.sub}</small></span>
+        </label>
+      ))}
+    </div>
+  );
 
   return (
     <main className="ci">
-      <div className="ci-card">
-        <header className="ci-head">
+      <div className="ci-shell">
+        <aside className="ci-brand">
           <img src="/assets/logo.webp" alt="Festival of Life" width={800} height={674} />
-          <div>
+          <div className="ci-brand-txt">
             <p className="ci-eyebrow">Daily check-in</p>
-            <h1>{today ? today.long : " "}</h1>
-            <p className="ci-sub">{today?.festivalDay ? `Day ${today.festivalDay} of 5 · ` : ""}{event.theme}</p>
+            <h1>{today ? today.long : "\u00a0"}</h1>
+            <p className="ci-chip">{today?.festivalDay ? `Day ${today.festivalDay} of 5` : event.dates}</p>
           </div>
-        </header>
+          <p className="ci-brand-foot">{event.theme} · {event.city}</p>
+        </aside>
 
-        {done ? (
-          <section className="ci-done" aria-live="polite">
-            <div className="ci-tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </div>
-            <h2>You&apos;re checked in, {done.name.split(" ")[0]}!</h2>
-            <p className="ci-which">{done.session === "morning" ? "Morning session · 9 AM WAT" : "Evening session · 5 PM WAT"} · {done.mode === "onsite" ? "Onsite" : "Online"}</p>
-            <blockquote className="ci-verse">“{done.verse.t}”<cite>{done.verse.r}</cite></blockquote>
-            {done.mode === "online" && live[0]?.url && (
-              <a className="ci-btn" href={live[0].url} target="_blank" rel="noopener">Watch live on YouTube</a>
-            )}
-            <button type="button" className="ci-btn ghost" onClick={again}>Check in someone else</button>
-          </section>
-        ) : (
-          <form className="ci-form" onSubmit={submit} noValidate>
-            <fieldset>
-              <legend>Which session?</legend>
-              <div className="ci-sessions">
-                {sessions.map((s) => (
-                  <label key={s.id} className={`ci-sess${session === s.id ? " on" : ""}`}>
-                    <input type="radio" name="session" value={s.id} checked={session === s.id} onChange={() => setSession(s.id)} />
-                    <b>{s.label}</b>
-                    <span>{s.time}</span>
-                  </label>
-                ))}
+        <section className="ci-panel">
+          {done ? (
+            <div className="ci-done" aria-live="polite">
+              <div className="ci-tick" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>
-            </fieldset>
-            <fieldset>
-              <legend>Where are you joining from?</legend>
-              <div className="ci-sessions">
-                {([["onsite", "Onsite", "In the auditorium"], ["online", "Online", "Watching the livestream"]] as const).map(([id, label, sub]) => (
-                  <label key={id} className={`ci-sess${mode === id ? " on" : ""}`}>
-                    <input type="radio" name="mode" value={id} checked={mode === id} onChange={() => { setMode(id); setErr(""); }} />
-                    <b>{label}</b>
-                    <span>{sub}</span>
-                  </label>
-                ))}
+              <h2>You&apos;re checked in, {done.name.split(" ")[0]}!</h2>
+              <div className="ci-tags">
+                <span>{done.session === "morning" ? "Morning · 9 AM WAT" : "Evening · 5 PM WAT"}</span>
+                <span>{done.mode === "onsite" ? "Onsite" : "Online"}</span>
               </div>
-            </fieldset>
-            <div className="ci-field">
-              <label htmlFor="ci-name">Your full name</label>
-              <input id="ci-name" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Adaeze Okafor" maxLength={60} required />
-              <p className="ci-hint">Use the same name every time you check in.</p>
+              <blockquote className="ci-verse">“{done.verse.t}”<cite>{done.verse.r}</cite></blockquote>
+              <div className="ci-actions">
+                {done.mode === "online" && live[0]?.url && (
+                  <a className="ci-btn" href={live[0].url} target="_blank" rel="noopener">Watch live on YouTube</a>
+                )}
+                <button type="button" className="ci-btn ghost" onClick={again}>Check in someone else</button>
+              </div>
             </div>
-            <p className="ci-err" role="alert">{err}</p>
-            <button className="ci-btn" type="submit" disabled={busy}>{busy ? <><span className="ci-spin" aria-hidden="true" />Checking you in…</> : "Check in"}</button>
-          </form>
-        )}
+          ) : (
+            <form className="ci-form" onSubmit={submit} noValidate>
+              <div className="ci-step">
+                <label className="ci-q" htmlFor="ci-name"><i>1</i>Your full name</label>
+                <input className="ci-input" id="ci-name" name="name" autoComplete="name" value={name} onChange={(e) => { setName(e.target.value); setErr(""); }} placeholder="e.g. Adaeze Okafor" maxLength={60} required />
+                <p className="ci-hint">Use the same name every time you check in.</p>
+              </div>
+              <fieldset className="ci-step">
+                <legend className="ci-q"><i>2</i>Session</legend>
+                {toggle<Session>({ name: "session", value: session, onChange: (v) => { setSession(v); setErr(""); },
+                  items: sessions.map((x) => ({ id: x.id, label: x.label, sub: x.time })) })}
+              </fieldset>
+              <fieldset className="ci-step">
+                <legend className="ci-q"><i>3</i>Joining from</legend>
+                {toggle<Mode>({ name: "mode", value: mode, onChange: (v) => { setMode(v); setErr(""); },
+                  items: [{ id: "onsite", label: "Onsite", sub: "In the auditorium" }, { id: "online", label: "Online", sub: "Livestream" }] })}
+              </fieldset>
+              <div className="ci-submit">
+                <p className="ci-err" role="alert">{err}</p>
+                <button className="ci-btn" type="submit" disabled={busy}>{busy ? <><span className="ci-spin" aria-hidden="true" />Checking you in…</> : "Check in"}</button>
+              </div>
+            </form>
+          )}
+        </section>
       </div>
-      <p className="ci-foot">{event.name} {event.year} · {event.dates} · {event.city}</p>
     </main>
   );
 }
