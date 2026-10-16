@@ -89,7 +89,7 @@ p{margin:0}
 .presents{color:var(--muted-cream)}
 .logo-hero{width:min(330px,68%);height:auto;animation:stamp 1s cubic-bezier(.2,1.4,.4,1) both .15s}
 @keyframes stamp{from{transform:scale(1.2) rotate(-5deg);opacity:0}to{transform:none;opacity:1}}
-.tagline{font-family:var(--head);font-weight:700;font-size:clamp(34px,4.6vw,62px);line-height:1;letter-spacing:-.03em;max-width:15ch}
+.tagline{font-family:var(--head);font-weight:700;font-size:clamp(34px,9.2vw,68px);line-height:1;letter-spacing:-.03em}
 .tagline em{font-style:normal;color:var(--yellow)}
 .theme-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .theme-row .lbl{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-cream);border:1px solid rgba(243,232,220,.3);border-radius:999px;padding:6px 10px}
@@ -121,7 +121,9 @@ p{margin:0}
 @keyframes unroll{from{transform:scaleY(.04)}to{transform:none}}
 @media (max-width:760px){
   .hero-grid{grid-template-columns:1fr}
-  .runners{height:clamp(220px,62vw,340px);padding-top:14px;margin-top:8px}
+  .runners{height:clamp(380px,112vw,500px);padding-top:16px;margin-top:22px;gap:10px;padding-inline:4px}
+  .runners .sway{max-width:none}
+  .hero-grid{padding-bottom:40px}
   .logo-hero{width:min(240px,58%)}
 }
 
@@ -509,7 +511,7 @@ fieldset{border:0;margin:0;padding:0}
   .hero-grid{padding-top:clamp(8px,1.6svh,36px)}
   .hero-copy{gap:clamp(12px,2.4svh,34px);padding-top:clamp(0px,1svh,20px)}
   .logo-hero{width:min(330px,68%,30svh)}
-  .tagline{font-size:min(clamp(36px,4.4vw,64px),7.2svh)}
+  .tagline{font-size:min(clamp(40px,4.9vw,72px),7.8svh)}
   .runners{height:min(clamp(420px,60vw,700px),calc(100svh - 150px))}
 }
 
@@ -594,3 +596,5 @@ fieldset{border:0;margin:0;padding:0}
 .ci-foot{margin:0;font-size:13px;color:var(--muted-cream);text-align:center}
 .when-line .when-times{font-style:normal;flex-basis:100%;color:var(--muted-cream)}
 .when-line .br-m{display:none}
+.card-btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn-line-dark{background:transparent;border:2px solid var(--on-cream);color:var(--on-cream)}

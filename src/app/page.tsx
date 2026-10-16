@@ -51,8 +51,8 @@ export default function Home() {
           <div className="wrap hero-grid">
             <div className="hero-copy">
               <h1><img className="logo-hero" src="/assets/logo.webp" alt="Festival of Life" width={800} height={674} /></h1>
-              <p className="tagline">An expression of God&apos;s glory in the <em>life of Jesus.</em></p>
-              <p className="when-line"><b>{event.dates}</b><span aria-hidden="true">·</span>{event.city}<br className="br-m" /><i className="when-times">Mornings 9 AM · Evenings 5 PM WAT</i></p>
+              <p className="tagline">An expression of<br />God&apos;s glory in the<br /><em>life of Jesus.</em></p>
+              <p className="when-line"><b>{event.dates}</b><span aria-hidden="true">·</span>{event.city}</p>
               <div className="hero-ctas">
                 <RegisterButton>Register</RegisterButton>
                 <a className="btn btn-line" href="#live"><i className="live-dot" aria-hidden="true" />Watch live</a>
