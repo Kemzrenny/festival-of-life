@@ -50,10 +50,10 @@ export async function checkIn(rawName: string, session: Session): Promise<Checki
         cache: "no-store",
         signal: AbortSignal.timeout(15000),
       });
-      const r = (await res.json()) as { ok: boolean; duplicate?: boolean; count?: number };
+      const r = (await res.json()) as { ok: boolean; duplicate?: boolean };
       if (r.duplicate) return dup;
       if (!r.ok) throw new Error("Sheet refused");
-      return { ok: true, name, session, date, count: r.count };
+      return { ok: true, name, session, date };
     }
     const k = `${date}:${session}`, store = memStore();
     const set = store.get(k) ?? new Set<string>(); store.set(k, set);
@@ -66,18 +66,8 @@ export async function checkIn(rawName: string, session: Session): Promise<Checki
   }
 }
 
-export async function todaysCounts(): Promise<{ date: string; morning: number | null; evening: number | null }> {
-  const { date } = watNow();
-  try {
-    if (SHEET) {
-      const res = await fetch(`${SHEET}?date=${date}`, { cache: "no-store", redirect: "follow", signal: AbortSignal.timeout(10000) });
-      const r = (await res.json()) as { morning?: number; evening?: number };
-      return { date, morning: r.morning ?? null, evening: r.evening ?? null };
-    }
-    if (MEMORY) {
-      const s = memStore();
-      return { date, morning: s.get(`${date}:morning`)?.size ?? 0, evening: s.get(`${date}:evening`)?.size ?? 0 };
-    }
-  } catch { /* counts are optional */ }
-  return { date, morning: null, evening: null };
+/** Wakes the Apps Script up (it can take a few seconds to start after a quiet spell). */
+export async function warmUp() {
+  if (!SHEET) return;
+  await fetch(SHEET, { cache: "no-store", redirect: "follow", signal: AbortSignal.timeout(10000) }).catch(() => undefined);
 }

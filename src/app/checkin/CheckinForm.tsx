@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from "react";
 import { days, event } from "@/content/site";
 
 type Session = "morning" | "evening";
-type Counts = { date: string; morning: number | null; evening: number | null };
 
 const VERSES = [
   { t: "But You, O Lord, are a shield for me, my glory and the One who lifts up my head.", r: "Psalm 3:3" },
@@ -33,31 +32,36 @@ function dayLabel(iso: string) {
   return { long, festivalDay: isFestival ? idx + 1 : 0 };
 }
 
+/** Check-ins made on this phone, so a repeat shows instantly without waiting for the Sheet. */
+const LS = "fol26-checkins";
+const seen = (): string[] => { try { return JSON.parse(localStorage.getItem(LS) || "[]"); } catch { return []; } };
+const remember = (k: string) => { try { localStorage.setItem(LS, JSON.stringify([...seen(), k].slice(-50))); } catch { /* private mode */ } };
+
 export function CheckinForm() {
   const [session, setSession] = useState<Session>("morning");
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [done, setDone] = useState<{ name: string; session: Session; verse: (typeof VERSES)[number] } | null>(null);
-  const [counts, setCounts] = useState<Counts | null>(null);
   const [today, setToday] = useState<{ long: string; festivalDay: number } | null>(null);
 
-  const refresh = useCallback(() => {
-    fetch("/api/checkin", { cache: "no-store" }).then((r) => r.json()).then(setCounts).catch(() => undefined);
-  }, []);
+  // Wake the Google Sheet script as soon as the page opens, and again every few minutes while it stays open.
+  const warm = useCallback(() => { fetch("/api/checkin", { cache: "no-store" }).catch(() => undefined); }, []);
 
   useEffect(() => {
     const w = wat();
     setSession(w.hour < 14 ? "morning" : "evening");
     setToday(dayLabel(w.iso));
-    refresh();
-    const t = setInterval(refresh, 30000);
+    warm();
+    const t = setInterval(warm, 4 * 60 * 1000);
     return () => clearInterval(t);
-  }, [refresh]);
+  }, [warm]);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (name.trim().length < 2) return setErr("Please enter your name.");
+    const localKey = `${wat().iso}|${session}|${name.replace(/\s+/g, " ").trim().toLowerCase()}`;
+    if (seen().includes(localKey)) return setErr(`${name.trim()} is already checked in for this ${session}'s session.`);
     setBusy(true); setErr("");
     try {
       const res = await fetch("/api/checkin", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, session }) });
@@ -65,7 +69,7 @@ export function CheckinForm() {
       if (!data.ok) setErr(data.message || "Something went wrong. Please try again.");
       else {
         setDone({ name: data.name, session, verse: VERSES[Math.floor(Math.random() * VERSES.length)] });
-        refresh();
+        remember(localKey);
       }
     } catch {
       setErr("We couldn't reach the check-in desk. Check your connection and try again.");
@@ -111,7 +115,6 @@ export function CheckinForm() {
                     <input type="radio" name="session" value={s.id} checked={session === s.id} onChange={() => setSession(s.id)} />
                     <b>{s.label}</b>
                     <span>{s.time}</span>
-                    {counts && counts[s.id] !== null && <small>{counts[s.id]} checked in</small>}
                   </label>
                 ))}
               </div>
@@ -122,7 +125,7 @@ export function CheckinForm() {
               <p className="ci-hint">Use the same name every time you check in.</p>
             </div>
             <p className="ci-err" role="alert">{err}</p>
-            <button className="ci-btn" type="submit" disabled={busy}>{busy ? "Checking in…" : "Check in"}</button>
+            <button className="ci-btn" type="submit" disabled={busy}>{busy ? <><span className="ci-spin" aria-hidden="true" />Checking you in…</> : "Check in"}</button>
           </form>
         )}
       </div>

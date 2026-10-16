@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { checkIn, todaysCounts, type Session } from "@/lib/checkin";
+import { checkIn, warmUp, type Session } from "@/lib/checkin";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  return NextResponse.json(await todaysCounts(), { headers: { "Cache-Control": "no-store" } });
+  await warmUp();
+  return NextResponse.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function POST(req: Request) {
