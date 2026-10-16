@@ -27,7 +27,7 @@ export function CardMaker() {
     const open = async () => {
       setSaveMsg(""); setPngUrl(""); dlg.current?.showModal();
       if (!imgs.current.bg) {
-        const [bg, logo] = await Promise.all([load("/assets/tapestry-frame.webp").catch(() => undefined), load("/assets/logo.png").catch(() => undefined)]);
+        const [bg, logo] = await Promise.all([load("/assets/tapestry-frame.webp").catch(() => undefined), load("/assets/logo.webp").catch(() => undefined)]);
         imgs.current = { bg, logo };
         await document.fonts.load(`700 64px ${headFont()}`).catch(() => undefined);
       }

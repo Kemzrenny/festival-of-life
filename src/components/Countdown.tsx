@@ -10,7 +10,7 @@ function parts(ms: number) {
   return [d, h, m, Math.floor(ms / 1e3)];
 }
 
-export function Countdown() {
+export function Countdown({ compact = false }: { compact?: boolean }) {
   const target = new Date(event.start).getTime();
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => { setNow(Date.now()); const t = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(t); }, []);
@@ -27,7 +27,7 @@ export function Countdown() {
         <div className="unit" key={i}><b suppressHydrationWarning>{String(n).padStart(2, "0")}</b><small>{labels[i]}</small></div>
       ))}
     </div>
-    <p className="ready" suppressHydrationWarning>{line}</p>
+    {!compact && <p className="ready" suppressHydrationWarning>{line}</p>}
     </>
   );
 }

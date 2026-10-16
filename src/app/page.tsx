@@ -41,7 +41,7 @@ export default function Home() {
   const socialLinks = social.filter((s) => s.url);
   return (
     <>
-      <div className="loader" aria-hidden="true"><img src="/assets/logo.png" alt="" width={800} height={674} /><p>{event.tagline}</p></div>
+      <div className="loader" aria-hidden="true"><img src="/assets/logo.webp" alt="" width={800} height={674} /><p>{event.tagline}</p></div>
       <Header />
 
       <main id="top">
@@ -50,9 +50,9 @@ export default function Home() {
           <Bunting />
           <div className="wrap hero-grid">
             <div className="hero-copy">
-              <h1><img className="logo-hero" src="/assets/logo.png" alt="Festival of Life" width={800} height={674} /></h1>
-              <p className="tagline">A celebration of the <em>life of Jesus.</em></p>
-              <p className="when-line"><b>{event.dates}</b><span aria-hidden="true">·</span>{event.city}</p>
+              <h1><img className="logo-hero" src="/assets/logo.webp" alt="Festival of Life" width={800} height={674} /></h1>
+              <p className="tagline">An expression of God&apos;s glory in the <em>life of Jesus.</em></p>
+              <p className="when-line"><b>{event.dates}</b><span aria-hidden="true">·</span>{event.city}<br className="br-m" /><i className="when-times">Mornings 9 AM · Evenings 5 PM WAT</i></p>
               <div className="hero-ctas">
                 <RegisterButton>Register</RegisterButton>
                 <a className="btn btn-line" href="#live"><i className="live-dot" aria-hidden="true" />Watch live</a>
@@ -66,6 +66,14 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* COUNTDOWN BAR */}
+        <section className="countbar" aria-label="Countdown to Festival of Life">
+          <div className="wrap">
+            <p><b>Festival of Life begins in</b><span>Wed 23 Dec · 9 AM WAT</span></p>
+            <Countdown compact />
           </div>
         </section>
 
@@ -83,16 +91,15 @@ export default function Home() {
                 {[...pastThemes, ...pastThemes].map((src, i) => <img key={i} src={src} alt="" loading="lazy" />)}
               </div>
             </div>
-            <p className="sod-note">Where hearts eagerly await this gathering of God&apos;s people for spiritual training, the experience of His glory and wisdom.</p>
             <div className="now">
               <h2 id="chapterH">It&apos;s now a <span>new chapter.</span></h2>
-              <p>Festival of Life unveils the culmination and climax of our identity and culture. Same family, same fire, a bigger celebration.</p>
+              <p>Festival of Life unveils the culmination and climax of our identity and culture. Same family, same fire, a greater expression of God&apos;s glory.</p>
             </div>
           </div>
         </section>
 
-        <Ribbon bg="var(--cream)" label="Extravagant grace calls for extravagant celebration"
-          big="Extravagant grace ◆ calls for ◆ extravagant celebration ◆ "
+        <Ribbon bg="var(--cream)" label={event.campaign}
+          big="Extravagant grace ◆ calls for an ◆ extravagant expression of God’s glory ◆ "
           small={`${event.tagline} · 23–27 December 2026 · ${event.city} · `}
           c1="#eda60e" c2="#800d10" t1="#341004" t2="#ec6d5e"
           d="M-200 120 C 150 20, 450 20, 800 110 S 1350 230, 1800 90" />
@@ -101,7 +108,7 @@ export default function Home() {
         <section className="statement" id="theme" aria-labelledby="stmt">
           <Edges left="red" right="teal" />
           <div className="wrap">
-            <h2 className="big" id="stmt"><span className="ln r">Extravagant grace</span><span className="ln">calls for</span><span className="ln r">extravagant</span><span className="ln">celebration.</span></h2>
+            <h2 className="big" id="stmt"><span className="ln r">Extravagant grace</span><span className="ln">calls for an</span><span className="ln r">extravagant expression</span><span className="ln">of God&apos;s glory.</span></h2>
             <div className="statement-sub">
               <figure className="strip-photo" style={{ margin: 0 }}>
                 <img src="/assets/symbol-strips.webp" loading="lazy" style={{ objectPosition: "30% center" }}
@@ -109,11 +116,11 @@ export default function Home() {
               </figure>
               <div className="theme-copy">
                 <p className="eyebrow mark" style={{ color: "var(--red)" }}>This December</p>
-                <h2>It&apos;s time for the celebration of <em>the life of Jesus.</em></h2>
-                <p>He was dead and He is alive forevermore. That calls for more than a polite clap. For five days in Ojodu we gather to celebrate Him out loud: in worship, in the Word, and in our most extravagant outfits.</p>
+                <h2>It&apos;s time to express God&apos;s glory in <em>the life of Jesus.</em></h2>
+                <p>He was dead and He is alive forevermore. That calls for more than a polite clap. For five days in Ojodu we gather to glorify Him out loud: in worship, in the Word, and in our most extravagant outfits.</p>
                 <div className="theme-mark">
                   <span className="eyebrow" style={{ color: "var(--muted-ink)" }}>2026 theme</span>
-                  <div className="torrents"><img src="/assets/torrents.png" alt={event.theme} width={730} height={440} loading="lazy" /></div>
+                  <div className="torrents"><img src="/assets/torrents.webp" alt={event.theme} width={730} height={440} loading="lazy" /></div>
                 </div>
                 <p>Our 2026 theme is {event.theme}. Come expecting more of Him than you can hold.</p>
               </div>
@@ -129,7 +136,16 @@ export default function Home() {
               <p className="note">Ministering across five days of morning and evening sessions.</p>
             </div>
             <div className="mgrid">
-              {ministers.map((m) => (
+              {ministers.map((m) => m.revealed === false ? (
+                <article className="mcard tba" key={m.name} style={{ ["--c" as string]: PAIRS[m.pair][0], ["--t" as string]: PAIRS[m.pair][1] }}>
+                  <div className="pic" style={{ background: PAIRS[m.pair][0] }}>
+                    <svg className="sil" viewBox="0 0 100 110" aria-hidden="true"><circle cx="50" cy="38" r="22" /><path d="M8 110c2-28 20-44 42-44s40 16 42 44z" /></svg>
+                    <span className="soon-tag">Coming soon</span>
+                  </div>
+                  <div className="zig" style={{ backgroundImage: zigTile(m.pair) }} />
+                  <div className="mname"><small>Minister</small><b>To be announced</b></div>
+                </article>
+              ) : (
                 <article className="mcard" key={m.name}>
                   <div className="pic" style={{ background: PAIRS[m.pair][0] }}><img src={m.photo} alt={`Pastor ${m.name}`} loading="lazy" />{m.host && <span className="host">Host</span>}</div>
                   <div className="zig" style={{ backgroundImage: zigTile(m.pair) }} />
@@ -145,8 +161,8 @@ export default function Home() {
           <Edges left="red" right="yellow" />
           <div className="wrap">
             <div className="sec-head">
-              <h2 id="progH">Five days of<br />celebration</h2>
-              <p className="note">Two sessions a day, Wednesday 23 to Sunday 27 December. Come for one. You&apos;ll want all ten.</p>
+              <h2 id="progH">Five days of<br />His glory</h2>
+              <p className="note">Two sessions a day, 9 AM and 5 PM WAT (Nigerian time), Wednesday 23 to Sunday 27 December. Come for one. You&apos;ll want all ten.</p>
             </div>
             <div className="days">
               {days.map((d, i) => {
@@ -161,8 +177,8 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="sessions">
-                      <div className="sess"><time>09:00</time><span className="t">{sessions[i].morning}</span><span className="k">Morning</span></div>
-                      <div className="sess"><time>17:00</time><span className="t">{sessions[i].evening}</span><span className="k">Evening</span></div>
+                      <div className="sess"><time>9:00 <small>AM</small></time><span className="t">{sessions[i].morning}</span><span className="k">Morning</span></div>
+                      <div className="sess"><time>5:00 <small>PM</small></time><span className="t">{sessions[i].evening}</span><span className="k">Evening</span></div>
                     </div>
                   </div>
                 );
@@ -181,8 +197,8 @@ export default function Home() {
         <section className="voices" id="celebrate" aria-labelledby="voicesH">
           <div className="wrap">
             <div className="sec-head">
-              <h2 id="voicesH">Five ways<br />we celebrate</h2>
-              <p className="note">Grace this extravagant can&apos;t be celebrated one way. We celebrate because we&apos;re alive, we rejoice because we&apos;re saved, and we leave made new.</p>
+              <h2 id="voicesH">Five ways we<br />express His glory</h2>
+              <p className="note">Grace this extravagant can&apos;t be expressed one way. We give Him glory because we&apos;re alive, we rejoice because we&apos;re saved, and we leave made new.</p>
             </div>
             <div className="stack">
               {voices.map((v, i) => {
@@ -195,7 +211,6 @@ export default function Home() {
                       <h3 className="vword" id={`v${i}`}>{v.word}</h3>
                       <p className="vquote">{v.quote}</p>
                       <p className="vbody">{v.body}</p>
-                      <p className="verse">{v.verse}<cite>{v.ref}</cite></p>
                     </div>
                     <div className="vstrip" role="img" aria-label={`${v.word} tapestry panel`} />
                   </article>
@@ -210,7 +225,7 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <h2 id="symH">Symbols of<br />our culture</h2>
-              <p className="note">Ten symbols are woven into every runner, banner and robe of Festival of Life. Each one tells part of the story we celebrate.</p>
+              <p className="note">Ten symbols are woven into every runner, banner and robe of Festival of Life. Each one tells part of the story of His glory.</p>
             </div>
             <Symbols />
           </div>
@@ -291,10 +306,10 @@ export default function Home() {
         <section className="live" id="live" aria-labelledby="liveH">
           <div className="wrap">
             <div className="sec-head">
-              <h2 id="liveH">Celebrate from<br />wherever you are</h2>
+              <h2 id="liveH">Join us from<br />wherever you are</h2>
               <p className="note">
                 {liveLinks.length
-                  ? "Every session streams live on the Glory Centre Community Church YouTube channel, with audio on Mixlr. Can't make it to Ojodu? Join the celebration from your sitting room."
+                  ? "Every session streams live on the Glory Centre Community Church YouTube channel, with audio on Mixlr. Can't make it to Ojodu? Join us from your sitting room."
                   : "Every session will stream live. Links will be posted here before 23 December."}
               </p>
             </div>
@@ -313,7 +328,7 @@ export default function Home() {
         {/* COUNTDOWN */}
         <section className="count" aria-labelledby="countH">
           <div className="wrap">
-            <h2 id="countH">The celebration of the <span>life of Jesus</span> begins in</h2>
+            <h2 id="countH">The expression of <span>God&apos;s glory</span> begins in</h2>
             <Countdown />
           </div>
         </section>
@@ -339,10 +354,10 @@ export default function Home() {
         <div className="wrap">
           <div className="fgrid">
             <div>
-              <img src="/assets/logo.png" alt="Festival of Life" width={114} height={96} />
+              <img src="/assets/logo.webp" alt="Festival of Life" width={114} height={96} />
               <p style={{ color: "var(--muted-cream)", maxWidth: "34ch" }}>{event.tagline}. 23–27 December 2026, {event.address}.</p>
             </div>
-            <div><h4>Explore</h4><ul><li><a href="#ministers">Ministers</a></li><li><a href="#programme">Programme</a></li><li><a href="#celebrate">Celebrate</a></li></ul></div>
+            <div><h4>Explore</h4><ul><li><a href="#ministers">Ministers</a></li><li><a href="#programme">Programme</a></li><li><a href="#celebrate">Five ways</a></li></ul></div>
             <div><h4>Visit</h4><ul><li><a href="#visit">Directions</a></li><li><a href="#visit">FAQ</a></li><li><a href="#live">Watch live</a></li></ul></div>
             {socialLinks.length > 0 && (
               <div><h4>Connect</h4><ul>{socialLinks.map((s) => <li key={s.label}><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}</ul></div>

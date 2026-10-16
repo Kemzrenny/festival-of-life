@@ -4,7 +4,7 @@ import { event, expect } from "@/content/site";
 import { RegisterButton } from "./RegisterButton";
 
 const DUR = [...expect.map((e) => e.ms), 5000];
-const NAMES = [...expect.map((e) => e.label), "The celebration"];
+const NAMES = [...expect.map((e) => e.label), "His glory"];
 
 export function ExpectFilm() {
   const film = useRef<HTMLDivElement>(null);
@@ -67,9 +67,9 @@ export function ExpectFilm() {
       ))}
       <div key={cur === 3 ? `e-${nonce}` : "e"} className={`scene end${cur === 3 ? " on" : ""}`} aria-hidden={cur !== 3}>
         <div className="endcard">
-          <img src="/assets/logo.png" alt="Festival of Life" />
-          <h3>Then the celebration begins.</h3>
-          <p>Mornings 9AM · Evenings 5PM · {event.dates}</p>
+          <img src="/assets/logo.webp" alt="Festival of Life" />
+          <h3>Then the expression of His glory begins.</h3>
+          <p>Mornings 9 AM · Evenings 5 PM WAT · {event.dates}</p>
           <RegisterButton>Register</RegisterButton>
         </div>
       </div>

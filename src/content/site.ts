@@ -17,13 +17,13 @@ export const event = {
   name: "Festival of Life",
   year: 2026,
   theme: "Torrents of His Glory",
-  tagline: "A celebration of the life of Jesus",
-  campaign: "Extravagant grace calls for extravagant celebration",
+  tagline: "An expression of God’s glory in the life of Jesus",
+  campaign: "Extravagant grace calls for an extravagant expression of God’s glory",
   dates: "23–27 Dec 2026",
   datesLong: "Wednesday 23 – Sunday 27 December 2026",
   start: "2026-12-23T09:00:00+01:00",
-  morning: "9:00 AM",
-  evening: "5:00 PM",
+  morning: "9:00 AM WAT",
+  evening: "5:00 PM WAT",
   city: "Ojodu, Lagos",
   address: "28 Efon Alaye Str., off Olajide, Ojodu, Lagos",
   mapsUrl:
@@ -59,11 +59,12 @@ export const social = [
   { label: "Contact", url: "" },
 ];
 
-export const ministers = [
+/** Set `revealed: false` to show a "to be announced" card instead of the photo and name. */
+export const ministers: { name: string; photo: string; pair: Pair; host?: boolean; revealed?: boolean }[] = [
   { name: "Olakunle Zakariya", photo: "/assets/min-olakunle.webp", host: true, pair: "yellow" as Pair },
   { name: "Adesola Zakariya", photo: "/assets/min-adesola.webp", pair: "coral" as Pair },
-  { name: "Joshua Obeng", photo: "/assets/min-obeng.webp", pair: "teal" as Pair },
-  { name: "Chris Delvan", photo: "/assets/min-delvan.webp", pair: "lime" as Pair },
+  { name: "Joshua Obeng", photo: "/assets/min-obeng.webp", pair: "teal" as Pair, revealed: false },
+  { name: "Chris Delvan", photo: "/assets/min-delvan.webp", pair: "lime" as Pair, revealed: false },
 ];
 
 export const days = [
@@ -82,9 +83,9 @@ export const sessions = days.map(() => ({
 
 export const voices = [
   {
-    word: "Celebration", pair: "yellow" as Pair, glyph: "crown", strip: "/assets/fabric-yellow-lit.webp",
-    quote: "“It’s time for the celebration of the life of Jesus.”",
-    body: "Five days, ten sessions, one reason. Bring your loudest praise, your family and your best outfit, because the King is worth celebrating.",
+    word: "Glory", pair: "yellow" as Pair, glyph: "crown", strip: "/assets/fabric-yellow-lit.webp",
+    quote: "“It’s time to express God’s glory in the life of Jesus.”",
+    body: "Five days, ten sessions, one reason. Bring your loudest praise, your family and your best outfit, because the King is worthy of all the glory.",
     verse: "“Hosanna to the Son of David! Blessed is He who comes in the name of the Lord!”", ref: "Matthew 21:9",
   },
   {
@@ -100,13 +101,13 @@ export const voices = [
     verse: "“Do not sorrow, for the joy of the Lord is your strength.”", ref: "Nehemiah 8:10",
   },
   {
-    word: "Salvation", pair: "red" as Pair, glyph: "cross", strip: "/assets/fabric-red-drape.webp",
-    quote: "“By grace I’ve been saved through faith. This calls for celebration!”",
+    word: "Salvation", pair: "red" as Pair, glyph: "cross", strip: "/assets/fabric-red-flat.webp",
+    quote: "“By grace I’ve been saved through faith. This calls for an expression of His glory!”",
     body: "We didn’t earn it and we can’t repay it. Grace this extravagant deserves an extravagant thank you.",
     verse: "“For by grace you have been saved through faith, and that not of yourselves; it is the gift of God.”", ref: "Ephesians 2:8",
   },
   {
-    word: "Newness", pair: "teal" as Pair, glyph: "dove", strip: "/assets/fabric-teal-drape.webp",
+    word: "Newness", pair: "teal" as Pair, glyph: "dove", strip: "/assets/fabric-teal-flat.webp",
     quote: "“Watch me rejoice like a newborn baby that has no worries.”",
     body: "Leave the weight of the year at the door. Walk out of December new, light and full of Him.",
     verse: "“If anyone is in Christ, he is a new creation; old things have passed away.”", ref: "2 Corinthians 5:17",
@@ -120,7 +121,7 @@ export const symbols = [
   { name: "Cross", glyph: "cross", line: "Where extravagant grace was poured out." },
   { name: "Staff", glyph: "staff", line: "The Good Shepherd who leads us." },
   { name: "Crown of Thorns", glyph: "thorns", line: "The suffering He bore for us." },
-  { name: "Crown", glyph: "crown", line: "The King we celebrate." },
+  { name: "Crown", glyph: "crown", line: "The King we glorify." },
   { name: "Bible", glyph: "bible", line: "The Word that gives life." },
   { name: "Praying Hands", glyph: "hands", line: "A people who seek His face." },
   { name: "Tamarisk Tree", glyph: "tree", line: "Planted by Abraham where he called on the everlasting God." },
@@ -142,7 +143,7 @@ export const expect = [
   {
     kind: "deep", image: "/assets/env-corridor.webp", alt: "A lit approach lined with festival symbol panels",
     label: "Arrive early", title: "Find your seat in the church auditorium.",
-    text: "Sessions start at 9AM and 5PM. Come a little early to settle in before worship begins.",
+    text: "Sessions start at 9 AM and 5 PM WAT. Come a little early to settle in before worship begins.",
     ms: 7000,
   },
   {
@@ -154,18 +155,18 @@ export const expect = [
   {
     kind: "in", image: "/assets/env-bunting.webp", alt: "Festival bunting and string lights",
     label: "Come dressed for it", title: "Wear your most extravagant outfit.",
-    text: "Agbada, gele, aso-oke, the jacket you've been saving. Walk in ready to celebrate the life of Jesus.",
+    text: "Agbada, gele, aso-oke, the jacket you've been saving. Walk in ready to express God’s glory.",
     ms: 7000,
   },
 ];
 
 export const faq = [
-  { q: "What should I wear?", a: "Your most extravagant celebration outfit. Agbada, gele, aso-oke, the jacket you've been saving: all welcome. Leave headroom for the Fila." },
+  { q: "What should I wear?", a: "Your most extravagant festival outfit. Agbada, gele, aso-oke, the jacket you've been saving: all welcome. Leave headroom for the Fila." },
   { q: "Is it free to attend?", a: "Yes, entry is free. Registering helps us prepare a seat and a welcome for you." },
   { q: "Can I come for only some days?", a: "Yes. Come for the days and sessions that work for you. We'll be glad to see you at any of them." },
   { q: "Where can I park?", a: "Parking and overflow arrangements will be shared closer to the date." },
   { q: "How do I get there by public transport?", a: "Directions from Ojodu Berger and the nearest bus stops will be shared closer to the date." },
-  { q: "Is there a session on Christmas Day?", a: "Yes. There's a morning and an evening session on Christmas Day, just like every other day. What better day to celebrate the life of Jesus?" },
+  { q: "Is there a session on Christmas Day?", a: "Yes. There's a morning and an evening session on Christmas Day, just like every other day. What better day to express God’s glory?" },
   { q: "Can I bring the children?", a: "Children's church arrangements will be shared closer to the date." },
 ];
 

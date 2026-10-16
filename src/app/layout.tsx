@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { event } from "@/content/site";
 import "./globals.css";
+import { preload } from "react-dom";
 
 /* Free stand-ins for GT Walsheim (headlines) and Söhne (body). When licensed web fonts arrive,
    add them to src/fonts and load them here the same way; they take priority through the --head/--body stacks. */
@@ -24,7 +25,7 @@ const hanken = localFont({
 });
 
 const title = `${event.name} ${event.year} · ${event.tagline}`;
-const description = `${event.tagline}. ${event.dates}, ${event.address}. Extravagant grace calls for extravagant celebration. Register and make your I'm Attending card.`;
+const description = `${event.tagline}. ${event.dates}, ${event.address}. ${event.campaign}. Register and make your I'm Attending card.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(event.siteUrl),
@@ -38,6 +39,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#800d10", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  // Start fetching the first-screen images straight away.
+  preload("/assets/logo.webp", { as: "image", fetchPriority: "high" });
+  preload("/assets/tapestry.webp", { as: "image", fetchPriority: "high" });
   return (
     <html lang="en" className={`${outfit.variable} ${hanken.variable}`}>
       <body>{children}</body>

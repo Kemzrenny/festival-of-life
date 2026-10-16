@@ -60,6 +60,7 @@ export function SoundPlayer() {
         </span>
         <span className="t"><b>{song.title}</b><small>{state === "loading" ? "Loading…" : `${song.artist} · festival sound`}</small></span>
         <span className="eq" aria-hidden="true"><i /><i /><i /></span>
+        <span className="mt" aria-hidden="true">{playingNow ? `Playing ${song.title}` : state === "loading" ? "Loading…" : `Play ${song.title}`}</span>
       </button>
     </>
   );
