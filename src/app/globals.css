@@ -601,3 +601,6 @@ fieldset{border:0;margin:0;padding:0}
 .ci-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px}
 .ci-spin{width:18px;height:18px;border-radius:50%;border:3px solid currentColor;border-right-color:transparent;animation:ciSpin .7s linear infinite}
 @keyframes ciSpin{to{transform:rotate(360deg)}}
+a.ci-btn{text-decoration:none;box-sizing:border-box}
+.ci-done .ci-btn{width:100%}
+.ci-form{gap:16px}

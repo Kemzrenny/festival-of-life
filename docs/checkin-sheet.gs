@@ -7,7 +7,8 @@
  * 3. Copy the web-app URL (ends in /exec). In Vercel → festival-of-life → Settings → Environment Variables,
  *    add CHECKIN_SHEET_WEBHOOK = that URL (all environments), then redeploy.
  *
- * Every check-in becomes a row on the "Check-ins" tab: Date | Session | Name | Time (UTC) | Key.
+ * Every check-in becomes a row on the "Check-ins" tab: Date | Session | Name | Joining | Time (UTC) | Key.
+ * Joining is Onsite or Online.
  * Duplicates are blocked: the same name (ignoring case and extra spaces) can check in once per session per day.
  * The Key column is used for the fast duplicate check; you can hide it but don't delete it.
  * If you edit this script later, use Deploy → Manage deployments → Edit → New version, so the URL stays the same.
@@ -19,7 +20,7 @@ function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(TAB) || ss.insertSheet(TAB);
   if (sh.getLastRow() === 0) {
-    sh.appendRow(['Date', 'Session', 'Name', 'Time (UTC)', 'Key']);
+    sh.appendRow(['Date', 'Session', 'Name', 'Joining', 'Time (UTC)', 'Key']);
     sh.setFrozenRows(1);
     sh.getRange('A:A').setNumberFormat('@');
   }
@@ -38,10 +39,10 @@ function doPost(e) {
   if (!lock.tryLock(10000)) return json_({ ok: false, error: 'busy' });
   try {
     var sh = sheet_();
-    var found = sh.getLastRow() > 1 && sh.getRange(2, 5, sh.getLastRow() - 1, 1)
+    var found = sh.getLastRow() > 1 && sh.getRange(2, 6, sh.getLastRow() - 1, 1)
       .createTextFinder(key).matchEntireCell(true).matchCase(true).findNext();
     if (found) { cache.put(key, '1', SIX_HOURS); return json_({ ok: false, duplicate: true }); }
-    sh.appendRow([d.date, d.session, d.name, d.time, key]);
+    sh.appendRow([d.date, d.session, d.name, d.mode || '', d.time, key]);
     cache.put(key, '1', SIX_HOURS);
     return json_({ ok: true });
   } catch (err) {

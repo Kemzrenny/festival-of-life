@@ -1,8 +1,10 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { days, event } from "@/content/site";
+import { days, event, live } from "@/content/site";
 
 type Session = "morning" | "evening";
+type Mode = "onsite" | "online";
+const MODE_KEY = "fol26-mode";
 
 const VERSES = [
   { t: "But You, O Lord, are a shield for me, my glory and the One who lifts up my head.", r: "Psalm 3:3" },
@@ -40,9 +42,10 @@ const remember = (k: string) => { try { localStorage.setItem(LS, JSON.stringify(
 export function CheckinForm() {
   const [session, setSession] = useState<Session>("morning");
   const [name, setName] = useState("");
+  const [mode, setMode] = useState<Mode | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
-  const [done, setDone] = useState<{ name: string; session: Session; verse: (typeof VERSES)[number] } | null>(null);
+  const [done, setDone] = useState<{ name: string; session: Session; mode: Mode; verse: (typeof VERSES)[number] } | null>(null);
   const [today, setToday] = useState<{ long: string; festivalDay: number } | null>(null);
 
   // Wake the Google Sheet script as soon as the page opens, and again every few minutes while it stays open.
@@ -52,6 +55,7 @@ export function CheckinForm() {
     const w = wat();
     setSession(w.hour < 14 ? "morning" : "evening");
     setToday(dayLabel(w.iso));
+    try { const m = localStorage.getItem(MODE_KEY); if (m === "onsite" || m === "online") setMode(m); } catch { /* ignore */ }
     warm();
     const t = setInterval(warm, 4 * 60 * 1000);
     return () => clearInterval(t);
@@ -59,17 +63,19 @@ export function CheckinForm() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (!mode) return setErr("Are you joining onsite or online?");
     if (name.trim().length < 2) return setErr("Please enter your name.");
     const localKey = `${wat().iso}|${session}|${name.replace(/\s+/g, " ").trim().toLowerCase()}`;
     if (seen().includes(localKey)) return setErr(`${name.trim()} is already checked in for this ${session}'s session.`);
     setBusy(true); setErr("");
     try {
-      const res = await fetch("/api/checkin", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, session }) });
+      const res = await fetch("/api/checkin", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, session, mode }) });
       const data = await res.json();
       if (!data.ok) setErr(data.message || "Something went wrong. Please try again.");
       else {
-        setDone({ name: data.name, session, verse: VERSES[Math.floor(Math.random() * VERSES.length)] });
+        setDone({ name: data.name, session, mode, verse: VERSES[Math.floor(Math.random() * VERSES.length)] });
         remember(localKey);
+        try { localStorage.setItem(MODE_KEY, mode); } catch { /* ignore */ }
       }
     } catch {
       setErr("We couldn't reach the check-in desk. Check your connection and try again.");
@@ -101,8 +107,11 @@ export function CheckinForm() {
               <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </div>
             <h2>You&apos;re checked in, {done.name.split(" ")[0]}!</h2>
-            <p className="ci-which">{done.session === "morning" ? "Morning session · 9 AM WAT" : "Evening session · 5 PM WAT"}</p>
+            <p className="ci-which">{done.session === "morning" ? "Morning session · 9 AM WAT" : "Evening session · 5 PM WAT"} · {done.mode === "onsite" ? "Onsite" : "Online"}</p>
             <blockquote className="ci-verse">“{done.verse.t}”<cite>{done.verse.r}</cite></blockquote>
+            {done.mode === "online" && live[0]?.url && (
+              <a className="ci-btn" href={live[0].url} target="_blank" rel="noopener">Watch live on YouTube</a>
+            )}
             <button type="button" className="ci-btn ghost" onClick={again}>Check in someone else</button>
           </section>
         ) : (
@@ -115,6 +124,18 @@ export function CheckinForm() {
                     <input type="radio" name="session" value={s.id} checked={session === s.id} onChange={() => setSession(s.id)} />
                     <b>{s.label}</b>
                     <span>{s.time}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Where are you joining from?</legend>
+              <div className="ci-sessions">
+                {([["onsite", "Onsite", "In the auditorium"], ["online", "Online", "Watching the livestream"]] as const).map(([id, label, sub]) => (
+                  <label key={id} className={`ci-sess${mode === id ? " on" : ""}`}>
+                    <input type="radio" name="mode" value={id} checked={mode === id} onChange={() => { setMode(id); setErr(""); }} />
+                    <b>{label}</b>
+                    <span>{sub}</span>
                   </label>
                 ))}
               </div>

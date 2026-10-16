@@ -6,9 +6,10 @@
  */
 
 export type Session = "morning" | "evening";
+export type Mode = "onsite" | "online";
 
 export type CheckinResult =
-  | { ok: true; name: string; session: Session; date: string; count?: number }
+  | { ok: true; name: string; session: Session; mode: Mode; date: string }
   | { ok: false; reason: "duplicate" | "invalid" | "not-configured" | "error"; message: string };
 
 const SHEET = process.env.CHECKIN_SHEET_WEBHOOK || "";
@@ -31,10 +32,11 @@ const memStore = () => (mem.__folCheckins ??= new Map());
 
 export const isConfigured = () => Boolean(SHEET || MEMORY);
 
-export async function checkIn(rawName: string, session: Session): Promise<CheckinResult> {
+export async function checkIn(rawName: string, session: Session, mode: Mode): Promise<CheckinResult> {
   const name = cleanName(rawName);
   if (name.length < 2 || name.length > 60) return { ok: false, reason: "invalid", message: "Please enter your name." };
   if (session !== "morning" && session !== "evening") return { ok: false, reason: "invalid", message: "Pick the morning or evening session." };
+  if (mode !== "onsite" && mode !== "online") return { ok: false, reason: "invalid", message: "Tell us if you're joining onsite or online." };
   if (!isConfigured()) return { ok: false, reason: "not-configured", message: "Check-in isn't switched on yet. Please speak to an usher." };
 
   const { date, iso } = watNow();
@@ -45,7 +47,7 @@ export async function checkIn(rawName: string, session: Session): Promise<Checki
       const res = await fetch(SHEET, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ date, session: sessionLabel(session), name, time: iso }),
+        body: JSON.stringify({ date, session: sessionLabel(session), name, mode: mode === "onsite" ? "Onsite" : "Online", time: iso }),
         redirect: "follow",
         cache: "no-store",
         signal: AbortSignal.timeout(15000),
@@ -53,14 +55,14 @@ export async function checkIn(rawName: string, session: Session): Promise<Checki
       const r = (await res.json()) as { ok: boolean; duplicate?: boolean };
       if (r.duplicate) return dup;
       if (!r.ok) throw new Error("Sheet refused");
-      return { ok: true, name, session, date };
+      return { ok: true, name, session, mode, date };
     }
     const k = `${date}:${session}`, store = memStore();
     const set = store.get(k) ?? new Set<string>(); store.set(k, set);
     const id = normaliseName(name);
     if (set.has(id)) return dup;
     set.add(id);
-    return { ok: true, name, session, date, count: set.size };
+    return { ok: true, name, session, mode, date };
   } catch {
     return { ok: false, reason: "error", message: "We couldn't check you in just now. Check your connection and try again." };
   }
