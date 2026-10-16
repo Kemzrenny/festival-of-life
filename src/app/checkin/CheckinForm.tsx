@@ -95,18 +95,6 @@ export function CheckinForm() {
     onsite: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a7 7 0 0 0-7 7c0 5.1 7 11.4 7 11.4s7-6.3 7-11.4a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" /></svg>,
     online: <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="13" rx="2.5" /><path d="M10 8.3v5.4l4.6-2.7z" fill="#fff" /><path d="M8 20.5h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>,
   };
-  const toggle = <T extends string>({ name, value, onChange, items }: { name: string; value: T | null; onChange: (v: T) => void; items: { id: T; label: string; sub: string }[] }) => (
-    <div className="ci-seg" role="radiogroup">
-      {items.map((it) => (
-        <label key={it.id} className={`ci-opt${value === it.id ? " on" : ""}`}>
-          <input type="radio" name={name} value={it.id} checked={value === it.id} onChange={() => onChange(it.id)} />
-          <span className="ci-ico">{ICONS[it.id as keyof typeof ICONS]}</span>
-          <span className="ci-txt"><b>{it.label}</b><small>{it.sub}</small></span>
-        </label>
-      ))}
-    </div>
-  );
-
   return (
     <main className="ci">
       <div className="ci-shell">
@@ -148,13 +136,30 @@ export function CheckinForm() {
               </div>
               <fieldset className="ci-step">
                 <legend className="ci-q"><i>2</i>Session</legend>
-                {toggle<Session>({ name: "session", value: session, onChange: (v) => { setSession(v); setErr(""); },
-                  items: sessions.map((x) => ({ id: x.id, label: x.label, sub: x.time })) })}
+                <div className="ci-tiles" role="radiogroup">
+                  {sessions.map((x) => (
+                    <label key={x.id} className={`ci-tile ${x.id}${session === x.id ? " on" : ""}`}>
+                      <input type="radio" name="session" value={x.id} checked={session === x.id} onChange={() => { setSession(x.id); setErr(""); }} />
+                      <span className="ci-tile-ico">{ICONS[x.id]}</span>
+                      <b>{x.label}</b>
+                      <small>{x.time}</small>
+                      <span className="ci-check" aria-hidden="true" />
+                    </label>
+                  ))}
+                </div>
               </fieldset>
               <fieldset className="ci-step">
                 <legend className="ci-q"><i>3</i>Joining from</legend>
-                {toggle<Mode>({ name: "mode", value: mode, onChange: (v) => { setMode(v); setErr(""); },
-                  items: [{ id: "onsite", label: "Onsite", sub: "In the auditorium" }, { id: "online", label: "Online", sub: "Livestream" }] })}
+                <div className="ci-list" role="radiogroup">
+                  {([["onsite", "Onsite", "I'm in the auditorium"], ["online", "Online", "I'm watching the livestream"]] as const).map(([id, label, sub]) => (
+                    <label key={id} className={`ci-row${mode === id ? " on" : ""}`}>
+                      <input type="radio" name="mode" value={id} checked={mode === id} onChange={() => { setMode(id); setErr(""); }} />
+                      <span className="ci-radio" aria-hidden="true" />
+                      <span className="ci-row-txt"><b>{label}</b><small>{sub}</small></span>
+                      <span className="ci-row-ico">{ICONS[id]}</span>
+                    </label>
+                  ))}
+                </div>
               </fieldset>
               <div className="ci-submit">
                 <p className="ci-err" role="alert">{err}</p>
