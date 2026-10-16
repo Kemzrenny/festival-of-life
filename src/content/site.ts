@@ -101,13 +101,13 @@ export const voices = [
     verse: "“Do not sorrow, for the joy of the Lord is your strength.”", ref: "Nehemiah 8:10",
   },
   {
-    word: "Salvation", pair: "red" as Pair, glyph: "cross", strip: "/assets/fabric-red-flat.webp",
+    word: "Salvation", pair: "red" as Pair, glyph: "cross", strip: "/assets/fabric-red-lit.webp",
     quote: "“By grace I’ve been saved through faith. This calls for an expression of His glory!”",
     body: "We didn’t earn it and we can’t repay it. Grace this extravagant deserves an extravagant thank you.",
     verse: "“For by grace you have been saved through faith, and that not of yourselves; it is the gift of God.”", ref: "Ephesians 2:8",
   },
   {
-    word: "Newness", pair: "teal" as Pair, glyph: "dove", strip: "/assets/fabric-teal-flat.webp",
+    word: "Newness", pair: "teal" as Pair, glyph: "dove", strip: "/assets/fabric-teal-lit.webp",
     quote: "“Watch me rejoice like a newborn baby that has no worries.”",
     body: "Leave the weight of the year at the door. Walk out of December new, light and full of Him.",
     verse: "“If anyone is in Christ, he is a new creation; old things have passed away.”", ref: "2 Corinthians 5:17",
