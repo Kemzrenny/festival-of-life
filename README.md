@@ -49,15 +49,11 @@ People type their name and pick the morning (9 AM WAT) or evening (5 PM WAT) ses
 Rules: the same name can check in once per session per day (case and extra spaces are ignored); the same person
 can check in to both sessions; a different spelling or an extra name counts as a different person.
 
-Storage (connect one or both):
+Storage is a Google Sheet. Follow the steps at the top of `docs/checkin-sheet.gs` (paste the script into the
+Sheet's Apps Script, deploy it as a web app), then add `CHECKIN_SHEET_WEBHOOK` in Vercel → Settings →
+Environment Variables and redeploy. The script blocks duplicates and adds each check-in as a row.
 
-1. **Vercel database** (does the duplicate check): Vercel → festival-of-life → Storage → Create → Upstash for Redis →
-   connect it to the project. Vercel adds `KV_REST_API_URL` and `KV_REST_API_TOKEN` automatically. Redeploy.
-2. **Google Sheet** (a readable copy of every check-in): follow the steps at the top of `docs/checkin-sheet.gs`, then
-   add `CHECKIN_SHEET_WEBHOOK` in Vercel → Settings → Environment Variables and redeploy. If Redis isn't connected,
-   the Sheet does the duplicate check itself.
-
-Until one is connected, the page shows "Check-in isn't switched on yet".
+Until it is connected, the page shows "Check-in isn't switched on yet".
 
 ## Registration
 
