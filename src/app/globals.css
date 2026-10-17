@@ -486,7 +486,6 @@ fieldset{border:0;margin:0;padding:0}
 @keyframes chase{0%,100%{opacity:.3}20%{opacity:1}}
 .sound{border:0;cursor:pointer;font:inherit;text-align:left}
 .sound.paused .eq i{animation-play-state:paused;height:3px}
-.yt-host{position:fixed;width:1px;height:1px;left:-9999px;top:0;opacity:0;pointer-events:none}
 .save-link{font-weight:700;text-decoration:underline}
 @media (prefers-reduced-motion: reduce){.bulb,.bflag,.bdrop,.bstring{animation:none}.bstring{stroke-dashoffset:0}}
 

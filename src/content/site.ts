@@ -41,10 +41,9 @@ export const registration = {
 };
 
 export const song = {
-  title: "Hosanna",
-  artist: "Toyosi Oseni",
-  youtubeId: "oulcfTfVXAM",
-  externalUrl: "https://music.youtube.com/watch?v=MtYjlIoAMJ4",
+  title: "Festival sound",
+  artist: "Festival of Life 2026",
+  src: "/audio/festival-of-life.mp3", // official festival audio (intro trimmed)
 };
 
 /** Livestream and social links. Leave a url empty ("") to hide that button. */
