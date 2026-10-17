@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RegisterButton } from "./RegisterButton";
 
 const LINKS = [
-  ["#ministers", "Ministers"], ["#programme", "Programme"], ["#celebrate", "Five ways"],
+  ["#ministers", "Ministers"], ["#programme", "Programme"], ["#celebrate", "Experience"],
   ["#visit", "Visit"], ["#live", "Watch live"],
 ] as const;
 

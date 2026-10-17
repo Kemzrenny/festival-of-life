@@ -10,7 +10,7 @@ export const PALM_PATH =
 
 export type GlyphName =
   | "palm" | "crown" | "tree" | "fire" | "cross" | "dove"
-  | "thorns" | "bible" | "hands" | "cup" | "staff";
+  | "thorns" | "bible" | "hands" | "cup" | "staff" | "eye" | "ear" | "heart";
 
 function Inner({ name }: { name: GlyphName }) {
   switch (name) {
@@ -24,6 +24,9 @@ function Inner({ name }: { name: GlyphName }) {
     case "bible": return <><path fillRule="evenodd" d="M11 6h24a3 3 0 0 1 3 3v31H14a3 3 0 0 1-3-3zM22 12v5h-5v4h5v11h4V21h5v-4h-5v-5z" /><path d="M14 42h24v2H14z" /></>;
     case "hands": return <><path d="M23 5c-3 5-5 13-6 20l-6 8 4 9 8-6z" /><path d="M25 5c3 5 5 13 6 20l6 8-4 9-8-6z" /></>;
     case "cup": return <><path d="M8 6h16c0 8-3.5 12.5-6.5 13.5V28H22v3H10v-3h4.5v-8.5C11.5 18.5 8 14 8 6z" /><path d="M19 39c0-6 5.4-9.5 12-9.5S43 33 43 39v3H19z" /></>;
+    case "eye": return <><path fillRule="evenodd" d="M24 11C13 11 5.5 19.5 3 24c2.5 4.5 10 13 21 13s18.5-8.5 21-13c-2.5-4.5-10-13-21-13zm0 21a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" /><circle cx="24" cy="24" r="4" /></>;
+    case "ear": return <path d="M25 5C15.6 5 9 11.7 9 20.5c0 2 .3 3.6 1 5.2l5-.4c-.6-1.5-1-3-1-4.8C14 14.5 18.6 10 25 10s11 4.4 11 10.5c0 4.2-2.3 6.4-4.6 8.5-2.2 2-4.4 4-4.9 7.6C26 39.5 24.4 41 22 41c-2.3 0-4-1.5-4-4h-5c0 5.3 4 9 9 9 5 0 8.7-3.2 9.5-8.6.3-1.8 1.6-3 3.4-4.6C37.6 30.3 41 27 41 20.5 41 11.7 34.4 5 25 5zm.4 9.5c-3.6 0-6.4 2.7-6.4 6.2 0 2 .8 3.6 2.4 4.8l1.3 1c.9.7 1.3 1.5 1.3 2.5h5c0-2.6-1.2-4.7-3.3-6.3l-1.3-1c-.4-.3-.4-.6-.4-1 0-.7.6-1.2 1.4-1.2.9 0 1.6.6 1.6 1.5h5c0-3.6-3-6.5-6.6-6.5z" />;
+    case "heart": return <path d="M24 42S5 30.5 5 17.5C5 11.7 9.6 7 15.3 7c3.6 0 6.8 1.9 8.7 4.8C25.9 8.9 29.1 7 32.7 7 38.4 7 43 11.7 43 17.5 43 30.5 24 42 24 42z" />;
     case "staff": return <path d="M20 44V15a9 9 0 1 1 18 0v4" fill="none" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />;
   }
 }

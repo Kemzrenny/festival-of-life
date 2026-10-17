@@ -4,21 +4,17 @@ import { CopyAddress } from "@/components/CopyAddress";
 import { Countdown } from "@/components/Countdown";
 import { Edges } from "@/components/Edge";
 import { ExpectFilm } from "@/components/ExpectFilm";
-import { Glyph, PALM_PATH } from "@/components/Glyph";
+import { Glyph } from "@/components/Glyph";
 import { Header } from "@/components/Header";
 import { CardMaker } from "@/components/CardMaker";
 import { CardButton, RegisterButton } from "@/components/RegisterButton";
 import { Ribbon } from "@/components/Ribbon";
 import { SoundPlayer } from "@/components/SoundPlayer";
-import { Symbols } from "@/components/Symbols";
 import {
   days, event, faq, live, ministers, PAIRS, pastThemes, sessions, social, voices,
 } from "@/content/site";
 import { zigTile } from "@/lib/fabric";
 
-const Palm = () => (
-  <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><path d={PALM_PATH} /></svg>
-);
 
 function XmasStar() {
   return (
@@ -51,7 +47,7 @@ export default function Home() {
           <div className="wrap hero-grid">
             <div className="hero-copy">
               <h1><img className="logo-hero" src="/assets/logo.webp" alt="Festival of Life" width={800} height={674} /></h1>
-              <p className="tagline">An expression of<br />God&apos;s glory in the<br /><em>life of Jesus.</em></p>
+              <p className="tagline">A life that has encountered{" "}<br />the fullness of God&apos;s goodness{" "}<br /><em>must find expression.</em></p>
               <p className="when-line"><b>{event.dates}</b><span aria-hidden="true">·</span>{event.city}</p>
               <div className="hero-ctas">
                 <RegisterButton>Register</RegisterButton>
@@ -72,7 +68,7 @@ export default function Home() {
         {/* COUNTDOWN BAR */}
         <section className="countbar" aria-label="Countdown to Festival of Life">
           <div className="wrap">
-            <p><b>Festival of Life begins in</b><span>Wed 23 Dec · 9 AM WAT</span></p>
+            <p><b>The countdown has begun</b></p>
             <Countdown compact />
           </div>
         </section>
@@ -85,21 +81,23 @@ export default function Home() {
             <img src="/assets/sod-photo-2.webp" alt="" loading="lazy" />
           </div>
           <div className="wrap">
-            <p className="was">For years, it&apos;s been <b>School of Destiny.</b></p>
             <div className="marquee" aria-label="Past School of Destiny themes">
               <div className="track">
                 {[...pastThemes, ...pastThemes].map((src, i) => <img key={i} src={src} alt="" loading="lazy" />)}
               </div>
             </div>
             <div className="now">
-              <h2 id="chapterH">It&apos;s now a <span>new chapter.</span></h2>
-              <p>Festival of Life unveils the culmination and climax of our identity and culture. Same family, same fire, a greater expression of God&apos;s glory.</p>
+              <h2 id="chapterH">We&apos;ve received a life that <span>must be expressed.</span></h2>
+              <div className="now-copy">
+                <p>For years, the School of Destiny tutored us in the wisdom, culture and realities of the Kingdom, forming us in the life of God and the dimensions of glory that define this house.</p>
+                <p>Now, it is time for these realities to find full expression in how we live, give, serve, worship and respond to God.</p>
+              </div>
             </div>
           </div>
         </section>
 
         <Ribbon bg="var(--cream)" label={event.campaign}
-          big="Extravagant grace ◆ calls for an ◆ extravagant expression of God’s glory ◆ "
+          big="Extravagant grace ◆ calls for ◆ extravagant demonstration ◆ "
           small={`${event.tagline} · 23–27 December 2026 · ${event.city} · `}
           c1="#eda60e" c2="#800d10" t1="#341004" t2="#ec6d5e"
           d="M-200 120 C 150 20, 450 20, 800 110 S 1350 230, 1800 90" />
@@ -108,21 +106,21 @@ export default function Home() {
         <section className="statement" id="theme" aria-labelledby="stmt">
           <Edges left="red" right="teal" />
           <div className="wrap">
-            <h2 className="big" id="stmt"><span className="ln r">Extravagant grace</span><span className="ln">calls for an</span><span className="ln r">extravagant expression</span><span className="ln">of God&apos;s glory.</span></h2>
+            <h2 className="big" id="stmt"><span className="ln r">Extravagant grace</span><span className="ln">calls for</span><span className="ln r">extravagant</span><span className="ln">demonstration.</span></h2>
             <div className="statement-sub">
               <figure className="strip-photo" style={{ margin: 0 }}>
                 <img src="/assets/symbol-strips.webp" loading="lazy" style={{ objectPosition: "30% center" }}
                   alt="Tapestry runners showing the cup and bread, fire, dove, cross, staff, crown of thorns, crown, Bible, praying hands and tamarisk tree" />
               </figure>
               <div className="theme-copy">
-                <p className="eyebrow mark" style={{ color: "var(--red)" }}>This December</p>
-                <h2>It&apos;s time to express God&apos;s glory in <em>the life of Jesus.</em></h2>
-                <p>He was dead and He is alive forevermore. That calls for more than a polite clap. For five days in Ojodu we gather to glorify Him out loud: in worship, in the Word, and in our most extravagant outfits.</p>
-                <div className="theme-mark">
-                  <span className="eyebrow" style={{ color: "var(--muted-ink)" }}>2026 theme</span>
+                <h2>What do we do in response to a grace <em>so extravagant?</em></h2>
+                <p>That extravagance will show in our devotion, in our worship and in our dedication. It will affect how we show up, give and serve, and how we present our lives in response to the goodness of God.</p>
+                <div className="theme-block">
+                  <p className="eyebrow" style={{ color: "var(--muted-ink)" }}>The theme</p>
                   <div className="torrents"><img src="/assets/torrents.webp" alt={event.theme} width={730} height={440} loading="lazy" /></div>
+                  <p>A torrent is not a trickle. It is a powerful outpouring that moves with abundance.</p>
+                  <p>This is the picture of the glory we gather to celebrate: the life of God expressed in its fullness, His goodness revealed in its many dimensions, and the overflow of all He has worked in us.</p>
                 </div>
-                <p>Our 2026 theme is {event.theme}. Come expecting more of Him than you can hold.</p>
               </div>
             </div>
           </div>
@@ -132,8 +130,8 @@ export default function Home() {
         <section className="ministers" id="ministers" aria-labelledby="minH">
           <div className="wrap">
             <div className="sec-head">
-              <h2 id="minH">At the table</h2>
-              <p className="note">Ministering across five days of morning and evening sessions.</p>
+              <h2 id="minH">Ministering</h2>
+              <p className="note">Pastors Olakunle and Adesola Zakariya, with other anointed men of God, across five days of morning and evening sessions.</p>
             </div>
             <div className="mgrid">
               {ministers.map((m) => m.revealed === false ? (
@@ -152,6 +150,13 @@ export default function Home() {
                   <div className="mname"><small>Pastor</small><b>{m.name}</b></div>
                 </article>
               ))}
+              <article className="mcard more">
+                <div className="more-in">
+                  <span className="plus" aria-hidden="true">+</span>
+                  <b>Other anointed men of God</b>
+                  <small>To be announced</small>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -188,8 +193,8 @@ export default function Home() {
         </section>
 
         <Ribbon bg="var(--black)" reverse
-          big="Hosanna ◆ Jesus reigns here ◆ was dead, now alive ◆ "
-          small={`Festival of Life · ${event.tagline} · `}
+          big="Every shade of His goodness ◆ Every expression of this life ◆ "
+          small={`${event.campaign} · ${event.tagline} · `}
           c1="#96d0c2" c2="#b4d030" t1="#2d6562" t2="#546603"
           d="M-200 90 C 250 210, 600 200, 900 110 S 1400 10, 1800 130" />
 
@@ -197,8 +202,7 @@ export default function Home() {
         <section className="voices" id="celebrate" aria-labelledby="voicesH">
           <div className="wrap">
             <div className="sec-head">
-              <h2 id="voicesH">Five ways we<br />express His glory</h2>
-              <p className="note">Grace this extravagant can&apos;t be expressed one way. We give Him glory because we&apos;re alive, we rejoice because we&apos;re saved, and we leave made new.</p>
+              <h2 id="voicesH">Every shade of His goodness.<br />Every expression of this life.</h2>
             </div>
             <div className="stack">
               {voices.map((v, i) => {
@@ -209,8 +213,7 @@ export default function Home() {
                     <div className="vtext">
                       <div className="vtop"><span className="glyph"><Glyph name={v.glyph as "crown"} /></span></div>
                       <h3 className="vword" id={`v${i}`}>{v.word}</h3>
-                      <p className="vquote">{v.quote}</p>
-                      <p className="vbody">{v.body}</p>
+                      <p className="vquote">{v.body}</p>
                     </div>
                     <div className="vstrip" role="img" aria-label={`${v.word} tapestry panel`} />
                   </article>
@@ -220,27 +223,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SYMBOLS */}
-        <section className="symbols" aria-labelledby="symH">
-          <div className="wrap">
-            <div className="sec-head">
-              <h2 id="symH">Symbols of<br />our culture</h2>
-              <p className="note">Ten symbols are woven into every runner, banner and robe of Festival of Life. Each one tells part of the story of His glory.</p>
-            </div>
-            <Symbols />
-          </div>
-        </section>
-
         {/* LOOKBOOK */}
         <section className="looks" aria-labelledby="looksH">
           <Edges left="yellow" right="lime" />
           <div className="wrap">
-            <div className="verse-lead">
-              <div className="palm-badge" aria-hidden="true"><Palm /></div>
-              <blockquote className="mt-verse" style={{ margin: 0 }}>
-                “And a very great multitude spread their <b>clothes</b> on the road; others cut down <b>branches from the trees</b> and spread them on the road.”<cite>Matthew 21:8</cite>
-              </blockquote>
-            </div>
             <div className="sec-head">
               <h2 id="looksH">Spread your<br />clothes on the road</h2>
               <p className="note">When Jesus rode in, the crowd dressed the road for Him. This December we dress up for Him. Take these looks as inspiration for your own festival outfit.</p>
@@ -357,7 +343,7 @@ export default function Home() {
               <img src="/assets/logo.webp" alt="Festival of Life" width={114} height={96} />
               <p style={{ color: "var(--muted-cream)", maxWidth: "34ch" }}>{event.tagline}. 23–27 December 2026, {event.address}.</p>
             </div>
-            <div><h4>Explore</h4><ul><li><a href="#ministers">Ministers</a></li><li><a href="#programme">Programme</a></li><li><a href="#celebrate">Five ways</a></li></ul></div>
+            <div><h4>Explore</h4><ul><li><a href="#ministers">Ministers</a></li><li><a href="#programme">Programme</a></li><li><a href="#celebrate">Experience</a></li></ul></div>
             <div><h4>Visit</h4><ul><li><a href="#visit">Directions</a></li><li><a href="#visit">FAQ</a></li><li><a href="#live">Watch live</a></li></ul></div>
             {socialLinks.length > 0 && (
               <div><h4>Connect</h4><ul>{socialLinks.map((s) => <li key={s.label}><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}</ul></div>

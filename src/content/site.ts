@@ -17,8 +17,8 @@ export const event = {
   name: "Festival of Life",
   year: 2026,
   theme: "Torrents of His Glory",
-  tagline: "An expression of God’s glory in the life of Jesus",
-  campaign: "Extravagant grace calls for an extravagant expression of God’s glory",
+  tagline: "A life that has encountered the fullness of God’s goodness must find expression",
+  campaign: "Extravagant grace calls for extravagant demonstration",
   dates: "23–27 Dec 2026",
   datesLong: "Wednesday 23 – Sunday 27 December 2026",
   start: "2026-12-23T09:00:00+01:00",
@@ -62,8 +62,6 @@ export const social = [
 export const ministers: { name: string; photo: string; pair: Pair; host?: boolean; revealed?: boolean }[] = [
   { name: "Olakunle Zakariya", photo: "/assets/min-olakunle.webp", host: true, pair: "yellow" as Pair },
   { name: "Adesola Zakariya", photo: "/assets/min-adesola.webp", pair: "coral" as Pair },
-  { name: "Joshua Obeng", photo: "/assets/min-obeng.webp", pair: "teal" as Pair, revealed: false },
-  { name: "Chris Delvan", photo: "/assets/min-delvan.webp", pair: "lime" as Pair, revealed: false },
 ];
 
 export const days = [
@@ -80,37 +78,16 @@ export const sessions = days.map(() => ({
   evening: "Evening session",
 }));
 
+/** "Every shade of His goodness. Every expression of this life." */
 export const voices = [
-  {
-    word: "Glory", pair: "yellow" as Pair, glyph: "crown", strip: "/assets/fabric-yellow-lit.webp",
-    quote: "“It’s time to express God’s glory in the life of Jesus.”",
-    body: "Five days, ten sessions, one reason. Bring your loudest praise, your family and your best outfit, because the King is worthy of all the glory.",
-    verse: "“Hosanna to the Son of David! Blessed is He who comes in the name of the Lord!”", ref: "Matthew 21:9",
-  },
-  {
-    word: "Alive", pair: "lime" as Pair, glyph: "tree", strip: "/assets/fabric-lime-lit.webp",
-    quote: "“Was dead, now alive, need more headroom for my Fila.”",
-    body: "Life in Him isn’t quiet and it isn’t small. Come as someone who has been raised up, and dress like it.",
-    verse: "“Even when we were dead in trespasses, [God] made us alive together with Christ.”", ref: "Ephesians 2:5",
-  },
-  {
-    word: "Rejoicing", pair: "coral" as Pair, glyph: "fire", strip: "/assets/fabric-coral-lit.webp",
-    quote: "“The joy of the Lord is my strength. My agbada speaks for me.”",
-    body: "Joy you can see from the gate. Dance like nobody is checking the time, because nobody is.",
-    verse: "“Do not sorrow, for the joy of the Lord is your strength.”", ref: "Nehemiah 8:10",
-  },
-  {
-    word: "Salvation", pair: "red" as Pair, glyph: "cross", strip: "/assets/fabric-red-lit.webp",
-    quote: "“By grace I’ve been saved through faith. This calls for an expression of His glory!”",
-    body: "We didn’t earn it and we can’t repay it. Grace this extravagant deserves an extravagant thank you.",
-    verse: "“For by grace you have been saved through faith, and that not of yourselves; it is the gift of God.”", ref: "Ephesians 2:8",
-  },
-  {
-    word: "Newness", pair: "teal" as Pair, glyph: "dove", strip: "/assets/fabric-teal-lit.webp",
-    quote: "“Watch me rejoice like a newborn baby that has no worries.”",
-    body: "Leave the weight of the year at the door. Walk out of December new, light and full of Him.",
-    verse: "“If anyone is in Christ, he is a new creation; old things have passed away.”", ref: "2 Corinthians 5:17",
-  },
+  { word: "See it.", pair: "yellow" as Pair, glyph: "eye", strip: "/assets/fabric-yellow-lit.webp",
+    body: "Witness the beauty of a life shaped by God’s goodness, expressed through real people and real stories." },
+  { word: "Hear it.", pair: "lime" as Pair, glyph: "ear", strip: "/assets/fabric-lime-lit.webp",
+    body: "Let the voices of celebration, worship and testimony give expression to all God has done." },
+  { word: "Feel it.", pair: "coral" as Pair, glyph: "heart", strip: "/assets/fabric-coral-lit.webp",
+    body: "Experience the joy, gratitude, reverence and wonder that rise from a life overflowing with God’s goodness." },
+  { word: "Experience it.", pair: "teal" as Pair, glyph: "hands", strip: "/assets/fabric-teal-lit.webp",
+    body: "Come into the life and glory in the community of God’s family." },
 ];
 
 export const symbols = [
